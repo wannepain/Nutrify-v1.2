@@ -1,11 +1,7 @@
-import React, { useState }  from "react";
-import LogIn from "./LogIn";
-import Homescreen from "./homescreen/Homescreen";
-import SignUp from "./SignUp";
-import axios from "axios";
-import { useEffect } from "react";
-// import from "react";
-// import jwt from "jsonwebtoken"
+import React, { useState, useEffect }  from "react";
+import LogIn from "./modules/authentication/LogIn";
+import SignUp from "./modules/authentication/SignUp";
+import classes from "./App.module.css";
 
 function App() {
   // const [token, setToken] = useState(null);
@@ -43,25 +39,26 @@ function App() {
     setIsLoggedIn(true);
   }
   
-  if (isLoggedIn){
-    return <div className="mainDiv">
-      <Homescreen />
-    </div>
-  } else if(logIn){
-    return <div>
+  // if (isLoggedIn){
+  //   return <div className="mainDiv">
+  //     <Homescreen />
+  //   </div>
+  // } else 
+  if(logIn){
+    return <div className={classes.body}>
       <LogIn setLog={setIsLoggedIn} setLogIn={setLogIn}/>
     </div>
   } else if(signUp){
-    return <div>
+    return <div className={classes.body}>
       <SignUp setSignUp={setSignUp} setSign={setIsLoggedIn}/>
     </div>
   } else{
     return (
-      <div>
+      <div className={classes.body}>
         <h1>Welcome to nutrify</h1>
-        <div id="inBtnContainer">
-          <button onClick={()=>setLogIn(true)} id="logInBtn" handleProp={handleProp}>Log in</button>
-          <button onClick={()=>setSignUp(true)} id="signUpBtn" auth={handleProp}>Sign up</button>
+        <div className={classes.container}>
+          <button onClick={()=>setLogIn(true)} className={classes.btn} handleProp={handleProp}>Log in</button>
+          <button onClick={()=>setSignUp(true)} className={classes.btn} auth={handleProp}>Sign up</button>
         </div>
       </div>
     );

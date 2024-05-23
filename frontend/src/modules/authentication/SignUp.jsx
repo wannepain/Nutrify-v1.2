@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import {useState } from "react";
 import axios from "axios";
-import Allergies from "./signUp/Allergies";
-import Diet from "./signUp/Diet";
-import WeightHeight from "./signUp/WeightHeight";
-import GenderAge from "./signUp/GenderAge";
-import GoalActiFac from "./signUp/GoalActiFac";
+import Allergies from "./Allergies";
+import Diet from "./Diet";
+import WeightHeight from "./WeightHeight";
+import GenderAge from "./GenderAge";
+import GoalActiFac from "./GoalActiFac";
 
 function SignUp(props) {
     const [isFirstPartDone, setIsFirstPartDone] = useState(false);
