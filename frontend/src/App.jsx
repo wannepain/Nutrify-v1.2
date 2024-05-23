@@ -55,10 +55,12 @@ function App() {
   } else{
     return (
       <div className={classes.body}>
-        <h1>Welcome to nutrify</h1>
-        <div className={classes.container}>
-          <button onClick={()=>setLogIn(true)} className={classes.btn} handleProp={handleProp}>Log in</button>
-          <button onClick={()=>setSignUp(true)} className={classes.btn} auth={handleProp}>Sign up</button>
+        <div>
+          <h1>Welcome to nutrify</h1>
+          <div className={classes.containerInline}>
+            <button onClick={()=>setLogIn(true)} className={classes.btn} handleProp={handleProp}>Log in</button>
+            <button onClick={()=>setSignUp(true)} className={classes.btn} auth={handleProp}>Sign up</button>
+          </div>
         </div>
       </div>
     );

@@ -5,6 +5,7 @@ import Diet from "./Diet";
 import WeightHeight from "./WeightHeight";
 import GenderAge from "./GenderAge";
 import GoalActiFac from "./GoalActiFac";
+import classes from "./authentication.module.css"
 
 function SignUp(props) {
     const [isFirstPartDone, setIsFirstPartDone] = useState(false);
@@ -90,15 +91,16 @@ function SignUp(props) {
             </div>
         );
     } else {
+
         return (
-            <div>
-                <h2 onClick={handleReturn} className="goBackH2"><img src="./../../public/resources/caret-left.svg" alt="Back" className="goBackIcon"/> Go back</h2>
-                <form id="signUpForm">
-                    <h1 id="SignUp">Sign up</h1>
-                    <div className="inputContainer">
+            <div className={classes.motherDiv}>
+                <h2 onClick={handleReturn} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2>
+                <form className={classes.form}>
+                    <h1 className={classes.h1}>Sign up</h1>
+                    <div className={classes.inputContainer}>
                         <input
                             name='username'
-                            className='topInput'
+                            className={`${classes.topInput} ${classes.input}`}
                             type="text"
                             placeholder="Username"
                             value={values.username}
@@ -107,7 +109,7 @@ function SignUp(props) {
                         />
                         <input
                             name='password'
-                            className='middleInput'
+                            className={`${classes.middleInput} ${classes.input}`}
                             type="password"
                             placeholder="Password"
                             value={values.password}
@@ -116,7 +118,7 @@ function SignUp(props) {
                         />
                         <input
                             name='passwordCheck'
-                            className="bottomInput"
+                            className={`${classes.bottomInput} ${classes.input}`}
                             type="password"
                             placeholder="Confirm Password"
                             value={values.passwordCheck}
@@ -125,7 +127,7 @@ function SignUp(props) {
                         />
                     </div>
                     {!error ? null : <p id='error'>{error}</p>}
-                    <button onClick={handleContinue} className="formBtn">Continue</button>
+                    <button onClick={handleContinue} className={classes.formBtn}>Continue</button>
                 </form>
             </div>
         );

@@ -11,3 +11,12 @@ body {
   background-color: #FFC600;
   margin: 0;
 }
+ html{
+  height: 100%;
+ }
+ #root{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
