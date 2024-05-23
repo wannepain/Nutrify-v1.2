@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import classes from "./authentication.module.css";
 
 function LogIn(props) {
   const [values, setValues] = useState({ username: "", password: "" });
@@ -48,13 +49,13 @@ function LogIn(props) {
   }
   return (
     <div>
-      <h2 onClick={handleReturn} className='goBackH2'><img src="./../../public/resources/caret-left.svg" alt="Back" className='goBackIcon'/> Go back</h2>
+      <h2 onClick={handleReturn} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2>
       <h1>Log In</h1>
-      <form id='logInForm'>
-        <div className='inputContainer'>
+      <form className={classes.form}>
+        <div className={classes.inputContainer}>
           <input
             name='username'
-            className='topInput'
+            className={`${classes.topInput} ${classes.input}`}
             type="text"
             placeholder="Username"
             value={values.username}
@@ -63,7 +64,7 @@ function LogIn(props) {
           />
           <input
             name='password'
-            className='bottomInput'
+            className={`${classes.bottomInput} ${classes.input}`}
             type="password"
             placeholder="Password"
             value={values.password}
@@ -72,7 +73,7 @@ function LogIn(props) {
           />
         </div>
         {!error ? null : <p id='error'>{error}</p>}
-        <button className="formBtn" onClick={handleLogin}>Login</button>
+        <button className={classes.formBtn} onClick={handleLogin}>Login</button>
       </form>
     </div>
   );
