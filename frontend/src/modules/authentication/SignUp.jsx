@@ -56,15 +56,6 @@ function SignUp(props) {
         setFinalObject(prevFinalObject => ({ ...prevFinalObject, ...object}));
     }
     
-    
-    // useEffect(() => {
-    //     console.log(values.username);
-    //     if (values.username !== "" && !isUsernameAdded) {
-    //         setFinalObject(prevFinalObject => ({ ...prevFinalObject, username: values.username }));
-    //         setIsUsernameAdded(true);
-    //     }
-    // }, [values.username, isUsernameAdded]); 
-    
     async function handleSignUp(event) {
         event.preventDefault();
         console.log(finalObject);
