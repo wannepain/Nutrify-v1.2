@@ -1,35 +1,73 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState }  from "react";
+import LogIn from "./LogIn";
+import Homescreen from "./homescreen/Homescreen";
+import SignUp from "./SignUp";
+import axios from "axios";
+import { useEffect } from "react";
+// import from "react";
+// import jwt from "jsonwebtoken"
 
 function App() {
-  const [count, setCount] = useState(0)
+  // const [token, setToken] = useState(null);
+  // const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [signUp, setSignUp] = useState(false);
+  const [logIn, setLogIn] = useState(false);
 
-  return (
-    <>
+    useEffect(() => {
+        const token = localStorage.getItem('jwtToken');
+
+        if (token) {
+            const tokenParts = token.split('.');
+            
+            // Check if the token has three parts
+            if (tokenParts.length === 3) {
+                // Decode the payload to extract expiration time
+                const payload = JSON.parse(atob(tokenParts[1]));
+                const expirationTime = payload.exp * 1000; // Convert to milliseconds
+    
+                // Check if the token is expired
+                if (expirationTime > Date.now()) {
+                    setIsLoggedIn(true)
+                } else {
+                    console.log('Token has expired.');
+                }
+            } else {
+                console.log('Invalid token format.');
+            }
+        } else {
+            console.log('Token is not present.');
+        }
+    }, []); // Empty dependency array ensures this effect runs only once on mount
+  function handleProp() {
+    setIsLoggedIn(true);
+  }
+  
+  if (isLoggedIn){
+    return <div className="mainDiv">
+      <Homescreen />
+    </div>
+  } else if(logIn){
+    return <div>
+      <LogIn setLog={setIsLoggedIn} setLogIn={setLogIn}/>
+    </div>
+  } else if(signUp){
+    return <div>
+      <SignUp setSignUp={setSignUp} setSign={setIsLoggedIn}/>
+    </div>
+  } else{
+    return (
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Welcome to nutrify</h1>
+        <div id="inBtnContainer">
+          <button onClick={()=>setLogIn(true)} id="logInBtn" handleProp={handleProp}>Log in</button>
+          <button onClick={()=>setSignUp(true)} id="signUpBtn" auth={handleProp}>Sign up</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    );
+
+  }
+  
 }
 
-export default App
+export default App;
