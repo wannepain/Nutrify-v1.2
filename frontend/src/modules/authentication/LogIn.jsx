@@ -72,7 +72,7 @@ function LogIn(props) {
             autoComplete='current-password'
           />
         </div>
-        {!error ? null : <p id='error'>{error}</p>}
+        {!error ? null : <p className={classes.error}>{error}</p>}
         <button className={classes.formBtn} onClick={handleLogin}>Login</button>
       </form>
     </div>

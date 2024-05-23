@@ -93,7 +93,7 @@ function SignUp(props) {
     } else {
 
         return (
-            <div className={classes.motherDiv}>
+            <div>
                 <h2 onClick={handleReturn} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2>
                 <form className={classes.form}>
                     <h1 className={classes.h1}>Sign up</h1>
@@ -126,7 +126,7 @@ function SignUp(props) {
                             autoComplete='new-password'
                         />
                     </div>
-                    {!error ? null : <p id='error'>{error}</p>}
+                    {!error ? null : <p className={classes.error}>{error}</p>}
                     <button onClick={handleContinue} className={classes.formBtn}>Continue</button>
                 </form>
             </div>
