@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import classes from "./diet.module.css";
 
 function Diet(props) {
     const [selectedOption, setSelectedOption] = useState("");
@@ -21,18 +22,18 @@ function Diet(props) {
         <div id="dietContainer" className="dropdownContainer">
             <h3>What diet are you following?</h3>
             <div className="dropdown-container">
-                <button type="button" id="mainDietBtn" onClick={handleClick}>
+                <button type="button" className={classes.mainDietBtn} onClick={handleClick}>
                     {selectedOption === "" ? "Select diet..." : selectedOption}
                 </button>
                 {wantToSelect && (
-                    <div id="dietSelectContainer" className="optionsContainer">
-                        <button type="button" id="dietTopBtn" onClick={() => handleSelect("Vegan")}>
+                    <div id="dietSelectContainer" className={classes.optionsContainer}>
+                        <button type="button" className={classes.dietTopBtn} onClick={() => handleSelect("Vegan")}>
                             Vegan
                         </button>
-                        <button type="button" id="dietMiddleBtn" onClick={() => handleSelect("Vegetarian")}>
+                        <button type="button" className={classes.dietMiddleBtn} onClick={() => handleSelect("Vegetarian")}>
                             Vegetarian
                         </button>
-                        <button type="button" id="dietBottomBtn" onClick={() => handleSelect("Omnivorous")}>
+                        <button type="button" className={classes.dietBottomBtn} onClick={() => handleSelect("Omnivorous")}>
                             Omnivorous
                         </button>
                     </div>

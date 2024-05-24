@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import classes from "./allergies.module.css"
 
 function Allergies(props) {
     const [userInput, setUserInput] = useState('');
@@ -40,15 +41,15 @@ function Allergies(props) {
     return (
         <div>
             <h3>What are you allergic to?</h3>
-            <div id="allergenInputContainer">
-                <input type="text" id="allergenInput" placeholder="wheat" list="allergens_list" value={userInput} onChange={handelInputChange}/>
-                <input type="text" id="fakeInput" placeholder="wheat" value={userInput}/>
-                <button type="button" id="addAllergenBtn" onClick={handleAdd}><img src="./../../../public/resources/add_recipe_icon.svg" alt="Add" id="addAllergenIcon"/></button>
+            <div className={classes.allergenInputContainer}>
+                <input type="text" className={classes.allergenInput} placeholder="wheat" list="allergens_list" value={userInput} onChange={handelInputChange}/>
+                <input type="text" className={classes.fakeInput} placeholder="wheat" value={userInput}/>
+                <button type="button" className={classes.addAllergenBtn} onClick={handleAdd}><img src="./../../../public/add_recipe_icon.svg" alt="Add" id="addAllergenIcon"/></button>
             </div>
-            <div id="displayDiv">
+            <div className={classes.displayDiv}>
                 {allergens.map(allergen => (
                     <React.Fragment key={allergen}>
-                        <button onClick={() => handleRemove(allergen)} className="allergenBtn">{allergen}</button>
+                        <button onClick={() => handleRemove(allergen)} className={classes.allergenBtn}>{allergen}</button>
                     </React.Fragment>
                 ))}
             </div>

@@ -1,4 +1,4 @@
-#allergenInput{
+.allergenInput{
     flex-grow: 2;
     border-radius: 0.5rem;
     padding: 0;
@@ -9,24 +9,24 @@
     position: absolute;
     width: 27rem;
 }
-#fakeInput{
+.fakeInput{
     flex-grow: 2;
     border-radius: 0.5rem;
     padding: 0;
     padding-left: 1rem;
 }
-#allergenInputContainer{
+.allergenInputContainer{
     display: flex;
     width: 100%;
 }
-#addAllergenBtn{
+.addAllergenBtn{
     margin-left: 0.5rem;
     border-radius: 0.5rem;
     border: none;
     height: calc(width);
     background-color: #101820;
 }
-#addAllergenBtn img{
+.addAllergenBtn img{
     filter: invert(100%) sepia(18%) saturate(2206%) hue-rotate(180deg) brightness(99%) contrast(108%);
 }
 .allergenBtn{
@@ -39,7 +39,7 @@
     color: #FDFDFF;
     margin-right: 0.5rem;
 }
-#displayDiv{
+.displayDiv{
     max-width: 19rem;
     display: flex;
     flex-wrap: wrap;
