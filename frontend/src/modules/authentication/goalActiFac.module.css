@@ -1,12 +1,12 @@
-#goalActiFacContainer{
+.goalActiFacContainer{
     display: flex;
 }
-#goalContainer,
-#actiFacContainer{
+.goalContainer,
+.actiFacContainer{
     display: flex;
     flex-direction: column;
     width: 50%;
 }
-#goalContainer{
+.goalContainer{
     margin-right: 0.5rem;
 }

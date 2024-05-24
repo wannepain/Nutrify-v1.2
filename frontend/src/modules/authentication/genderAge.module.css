@@ -1,18 +1,18 @@
-#ageContainer{
+.ageContainer{
     margin-left: 0.5rem;
 }
 
-#ageContainer,
-#genderContainer{
+.ageContainer,
+.genderContainer{
     display: flex;
     flex-direction: column;
     width: 50%;
 }
-#ageContainer input{
+.ageContainer input{
     border-radius: 0.5rem;
     padding: 0;
     padding-left: 1rem;
 }
-#genderAgeContainer{
+.genderAgeContainer{
     display: flex;
 }

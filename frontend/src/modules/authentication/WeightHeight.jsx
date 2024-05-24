@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import classes from "./weightheigth.module.css"
+//frontend\src\modules\authentication\weightheigth.module.css
 function WeightHeight(props) {
     const [obj, setObj] = useState({weight: null, height: null});
     
@@ -11,12 +12,12 @@ function WeightHeight(props) {
     }
     
     return (
-        <div id="weightHeightContainer">
-            <div id="weightContainer">
+        <div className={classes.weightHeightContainer}>
+            <div className={classes.weightContainer}>
                 <label htmlFor="weight">What's your current weight?</label>
                 <input type="number" name="weight" id="dietWeight" placeholder="75kg" onChange={handleChange}/>
             </div>
-            <div id="heightContainer">
+            <div className={classes.heightContainer}>
                 <label htmlFor="height">How tall are you?</label>
                 <input type="number" name="height" id="dietHeight" placeholder="180cm" onChange={handleChange}/>
             </div>

@@ -1,5 +1,7 @@
 
 import React, { useState, useEffect } from "react";
+import dropdown from "./dropdown.module.css";
+import classes from "./goalactifac.module.css";
 
 function GoalActiFac(props) {
     const [selectedGoal, setSelectedGoal] = useState("");
@@ -51,49 +53,49 @@ useEffect(() => {
     }
 }, [selectedGoal, selectedActiFac]);
     return (
-        <div id="goalActiFacContainer">
-            <div id="goalContainer" className="dropdownContainer" >
+        <div className={classes.goalActiFacContainer}>
+            <div className={classes.goalContainer}>
                 <h3>What's your goal??</h3>
                 <div className="dropdown-container">
-                    <button type="button" id="mainDietBtn" name="goalBtn" onClick={() => handleClick("goalBtn")}>
+                    <button type="button" className={dropdown.mainBtn} name="goalBtn" onClick={() => handleClick("goalBtn")}>
                         {selectedGoal === "" ? "Select goal..." : selectedGoal}
                     </button>
                     {wantToSelectGoal && (
-                        <div id="goalSelectContainer" className="optionsContainer">
-                            <button type="button" id="dietTopBtn" className="goalBtn" name="lose" onClick={() => handleSelect("Lose weight")}>
+                        <div className={`${classes.goalActiFacContainer} optionsContainer`}>
+                            <button type="button" className={dropdown.topBtn} name="lose" onClick={() => handleSelect("Lose weight")}>
                                 Lose weight
                             </button>
-                            <button type="button" id="dietMiddleBtn" className="goalBtn" name="maintain" onClick={() => handleSelect("Maintain weight")}>
+                            <button type="button" className={dropdown.middleBtn} name="maintain" onClick={() => handleSelect("Maintain weight")}>
                                 Maintain weight
                             </button>
-                            <button type="button" id="dietBottomBtn" className="goalBtn" name="gain" onClick={() => handleSelect("Gain weight (muscle)")}>
+                            <button type="button" className={dropdown.bottomBtn} name="gain" onClick={() => handleSelect("Gain weight (muscle)")}>
                                 Gain weight (muscle)
                             </button>
                         </div>
                     )}
                 </div>
             </div>
-            <div id="actiFacContainer" className="dropdownContainer" >
+            <div className={classes.actiFacContainer} >
                 <h3>How active are you?</h3>
                 <div className="dropdown-container">
-                    <button type="button" id="mainDietBtn" name="activityBtn" onClick={() => handleClick("activityBtn")}>
+                    <button type="button" className={dropdown.mainBtn} name="activityBtn" onClick={() => handleClick("activityBtn")}>
                         {selectedActiFac === "" ? "Select activity level..." : selectedActiFac}
                     </button>
                     {wantToSelectActivity && (
                         <div id="activitySelectContainer" className="optionsContainer">
-                            <button type="button" id="dietTopBtn" onClick={() => handleSelect("Sedentary")}>
+                            <button type="button" className={dropdown.topBtn} onClick={() => handleSelect("Sedentary")}>
                                 Sedentary 
                             </button>
-                            <button type="button" id="dietMiddleBtn" onClick={() => handleSelect("Light")}>
+                            <button type="button" className={dropdown.middleBtn} onClick={() => handleSelect("Light")}>
                                 Light 
                             </button>
-                            <button type="button" id="dietMiddleBtn" onClick={() => handleSelect("Moderate")}>
+                            <button type="button" className={dropdown.middleBtn} onClick={() => handleSelect("Moderate")}>
                                 Moderate 
                             </button>
-                            <button type="button" id="dietMiddleBtn" onClick={() => handleSelect("Active")}>
+                            <button type="button" className={dropdown.middleBtn} onClick={() => handleSelect("Active")}>
                                 Active 
                             </button>
-                            <button type="button" id="dietBottomBtn" onClick={() => handleSelect("Very active")}>
+                            <button type="button" className={dropdown.bottomBtn} onClick={() => handleSelect("Very active")}>
                                 Very active 
                             </button>
                         </div>

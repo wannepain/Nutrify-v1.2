@@ -5,7 +5,9 @@ import Diet from "./Diet";
 import WeightHeight from "./WeightHeight";
 import GenderAge from "./GenderAge";
 import GoalActiFac from "./GoalActiFac";
+
 import classes from "./authentication.module.css"
+import styles from "./signup.module.css"
 
 function SignUp(props) {
     const [isFirstPartDone, setIsFirstPartDone] = useState(false);

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import classes from "./genderage.module.css";
+import dropdown from "./dropdown.module.css";
 
 function GenderAge(props) {
     const [selectedOption, setSelectedOption] = useState("");
@@ -28,28 +30,28 @@ function GenderAge(props) {
     }
 
     return (
-        <div id="genderAgeContainer">
-            <div id="genderContainer" className="dropdownContainer">
+        <div className={classes.genderAgeContainer}>
+            <div className={classes.genderContainer}>
                 <h3>What gender are you?</h3>
-                <div className="dropdown-container">
-                    <button type="button" id="mainDietBtn" onClick={handleClick}>
+                <div>
+                    <button type="button" className={dropdown.mainBtn} onClick={handleClick}>
                         {selectedOption === "" ? "Select gender..." : selectedOption}
                     </button>
                     {wantToSelect && (
-                        <div id="genderSelectContainer" className="optionsContainer">
-                            <button type="button" id="dietTopBtn" onClick={() => handleSelect("Male")}>
+                        <div className={dropdown.optionsContainer}>
+                            <button type="button" className={dropdown.topBtn} onClick={() => handleSelect("Male")}>
                                 Male
                             </button>
-                            <button type="button" id="dietBottomBtn" onClick={() => handleSelect("Female")}>
+                            <button type="button" className={dropdown.bottomBtn} onClick={() => handleSelect("Female")}>
                                 Female
                             </button>
                         </div>
                     )}
                 </div>
             </div>
-            <div id="ageContainer">
+            <div className={classes.ageContainer}>
                 <label htmlFor="age">How old are you?</label>
-                <input type="number" name="age" id="userAge" placeholder="25" onChange={handleChange} value={currentAge} />
+                <input type="number" name="age" className={classes.userAge} placeholder="25" onChange={handleChange} value={currentAge} />
             </div>
         </div>
     );

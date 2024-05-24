@@ -1,18 +1,18 @@
-#weightContainer{
+.weightContainer{
     display: flex;
     margin-right: 0.5rem;
 }
-#heightContainer,
-#weightContainer{
+.heightContainer,
+.weightContainer{
     display: flex;
     flex-direction: column;
 }
-#heightContainer input,
-#weightContainer input{
+.heightContainer input,
+.weightContainer input{
     border-radius: 0.5rem;
     padding: 0;
     padding-left: 1rem;
 }
-#weightHeightContainer{
+.weightHeightContainer{
     display: flex;
 }

@@ -1,0 +1,26 @@
+#genderSelectContainer,
+#activitySelectContainer,
+#goalSelectContainer{
+    width: 14.7rem;
+    height: fit-content;
+    max-height: 7rem;
+    scroll-behavior: smooth;
+    overflow: scroll;
+}
+.secondSignUpContainer{
+    margin-bottom: 0.5rem;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+#genderSelectContainer::-webkit-scrollbar,
+#activitySelectContainer::-webkit-scrollbar,
+#goalSelectContainer::-webkit-scrollbar {
+    display: none;
+}
+    
+    /* Hide scrollbar for IE, Edge and Firefox */
+#genderSelectContainer,
+#activitySelectContainer,
+#goalSelectContainer {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
