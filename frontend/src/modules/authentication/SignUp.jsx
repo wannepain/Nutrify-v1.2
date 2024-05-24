@@ -27,24 +27,26 @@ function SignUp(props) {
         const { username, password, passwordCheck } = values;
         if (username === "" || password === "") {
             setError("Username and password mustn't be empty");
-        } else if (password !== passwordCheck) {
+        }else if(password !== passwordCheck) {
             setError("Passwords don't match");
-        } else {
-            // Add user to database 
-            try {
-                const result = await axios.post("http://localhost:3000/signup",{username: username, password:password})
-                console.log(result);
-                setIsFirstPartDone(true);
-                setFinalObject(prevFinalObject => ({ ...prevFinalObject, username: values.username }));
-            } catch (error) {
-                if(error.response.status === 409){
-                    setError("Username already exists");
-                    setValues(prevState => ({ ...prevState, username: "" }));
-                }
-                console.error(error);
-            }
-            
+        } else{
+            setIsFirstPartDone(true);
         }
+        //     // Add user to database 
+        //     try {
+        //         const result = await axios.post("http://localhost:3000/signup",{username: username, password:password})
+        //         console.log(result);
+        //         setIsFirstPartDone(true);
+        //         setFinalObject(prevFinalObject => ({ ...prevFinalObject, username: values.username }));
+        //     } catch (error) {
+        //         if(error.response.status === 409){
+        //             setError("Username already exists");
+        //             setValues(prevState => ({ ...prevState, username: "" }));
+        //         }
+        //         console.error(error);
+        //     }
+            
+        // }
     }
     function handleReturn(event) {
         event.preventDefault()
@@ -63,11 +65,12 @@ function SignUp(props) {
         event.preventDefault();
         console.log(finalObject);
         try {
-            const result = await axios.post("http://localhost:3000/signup/nutrition", finalObject)
-            if (result.status === 200) {
+            const result = await axios.post("http://localhost:3000/signup",{username: username, password: password});
+            const result2 = await axios.post("http://localhost:3000/signup/nutrition", finalObject)
+            if (result.status === 200 && result2.status === 200) {
                 props.setSign(true);
             }
-            console.log(result.data.rows);
+            console.log(result.data.rows, result2.data,rows);
         } catch (error) {
             console.log(error);
         }
@@ -75,11 +78,11 @@ function SignUp(props) {
     }
     if (isFirstPartDone) {
         return (
-            <div>
-                <h2 onClick={handleBackToFirstPart} className="goBackH2"><img src="./../../public/resources/caret-left.svg" alt="Back" className="goBackIcon"/> Go back</h2>
+            <div className={styles.div}>
+                <h2 onClick={handleBackToFirstPart} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2>
                 <form>
                     <h1 id="SignUp">Sign up</h1>
-                    <div id="secondSignUpContainer">
+                    <div className={styles.secondSignUpContainer}>
                         <input type="hidden" value={values.username} name="username"/>
                         <Allergies error={setError} obj={addToObj}/>
                         <Diet obj={addToObj}/>
@@ -87,7 +90,7 @@ function SignUp(props) {
                         <GenderAge obj={addToObj}/>
                         <GoalActiFac obj={addToObj}/>
                     </div>
-                    <button className="formBtn" onClick={handleSignUp}>Sign up</button>
+                    <button className={styles.btn} onClick={handleSignUp}>Sign up</button>
                     {!error ? null : <p id='error'>{error}</p>}
                 </form>
             </div>

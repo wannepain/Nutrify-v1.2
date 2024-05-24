@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from "react";
 import classes from "./diet.module.css";
+import Dropdown from "../common/Dropdown";
 
 function Diet(props) {
-    const [selectedOption, setSelectedOption] = useState("");
-    const [wantToSelect, setWantToSelect] = useState(false);
+    // const [selectedOption, setSelectedOption] = useState("");
+    // const [wantToSelect, setWantToSelect] = useState(false);
 
-    useEffect(() => {
-        props.obj({ diet: selectedOption.toLocaleLowerCase() });
-    }, [selectedOption]);
+    // useEffect(() => {
+    //     props.obj({ diet: selectedOption.toLocaleLowerCase() });
+    // }, [selectedOption]);
 
-    function handleClick() {
-        setWantToSelect(!wantToSelect);
-    }
+    // function handleClick() {
+    //     setWantToSelect(!wantToSelect);
+    // }
 
-    function handleSelect(option) {
-        setSelectedOption(option);
-        setWantToSelect(false);
-    }
+    // function handleSelect(option) {
+    //     setSelectedOption(option);
+    //     setWantToSelect(false);
+    // }
 
     return (
         <div id="dietContainer" className="dropdownContainer">
             <h3>What diet are you following?</h3>
-            <div className="dropdown-container">
+            {/* <div className="dropdown-container">
                 <button type="button" className={classes.mainDietBtn} onClick={handleClick}>
                     {selectedOption === "" ? "Select diet..." : selectedOption}
                 </button>
                 {wantToSelect && (
-                    <div id="dietSelectContainer" className={classes.optionsContainer}>
+                    <div className={`${classes.optionsContainer} ${classes.dietSelectContainer}`}>
                         <button type="button" className={classes.dietTopBtn} onClick={() => handleSelect("Vegan")}>
                             Vegan
                         </button>
@@ -38,7 +39,8 @@ function Diet(props) {
                         </button>
                     </div>
                 )}
-            </div>
+            </div> */}
+            <Dropdown text="Select diet..." options="Vegan,Vegetarian,Omnivorous" obj={props.obj}/>
         </div>
     );
 }

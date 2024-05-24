@@ -6,10 +6,9 @@
     margin-top: 0.5rem;
     position: absolute;
     background-color: #FDFDFF;
-    width: 30%;
     /* justify-content: center; */
 }
-.mainDietBtn{
+.mainBtn{
     width: 100%;
     border-radius: 0.5rem;
     padding: 0;
@@ -19,9 +18,9 @@
     font-size: 1.5rem;
 }
 
-.dietMiddleBtn,
-.dietBottomBtn,
-.dietTopBtn{
+.middleBtn,
+.bottomBtn,
+.topBtn{
     border-radius: 0.3rem;
     font-size: 1.2rem;
     padding: 0.1rem;
@@ -32,9 +31,9 @@
     border: none;
     opacity: 0.99;
 }
-.dietMiddleBtn:hover,
-.dietBottomBtn:hover,
-.dietTopBtn:hover{
+.middleBtn:hover,
+.bottomBtn:hover,
+.topBtn:hover{
     /* box-shadow: 0px 0px 2px #101820 inset; */
     background-color: #101820;
     color: #FDFDFF;
