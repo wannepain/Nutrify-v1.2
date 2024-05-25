@@ -1,32 +1,27 @@
-.allergenInput{
+.input{
     flex-grow: 2;
     border-radius: 0.5rem;
-    padding: 0;
-    padding-left: 1rem;
-    z-index: 2;
-    height: 3rem; 
-    opacity: 0;
-    position: absolute;
-    width: 27rem;
+    font-size: 1.2rem;
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border: none;
 }
-.fakeInput{
-    flex-grow: 2;
-    border-radius: 0.5rem;
-    padding: 0;
-    padding-left: 1rem;
+.input::-webkit-calendar-picker-indicator{
+    color: transparent;
+    /*hides the datalist arrow*/
 }
 .allergenInputContainer{
     display: flex;
     width: 100%;
 }
-.addAllergenBtn{
+.btn{
     margin-left: 0.5rem;
     border-radius: 0.5rem;
     border: none;
-    height: calc(width);
     background-color: #101820;
+    padding: 0.5rem;
 }
-.addAllergenBtn img{
+.btn img{
     filter: invert(100%) sepia(18%) saturate(2206%) hue-rotate(180deg) brightness(99%) contrast(108%);
 }
 .allergenBtn{

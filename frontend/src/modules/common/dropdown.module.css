@@ -1,12 +1,16 @@
 .optionsContainer{
     border-radius: 0.3rem;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 0.5rem;
     position: absolute;
     background-color: #FDFDFF;
+    top: 3rem;
+    width: 100%;
+    z-index: 2;
     /* justify-content: center; */
+}
+.dropDownContainer{
+    position: relative;
+    display: flex;
+    align-items: stretch;
 }
 .mainBtn{
     width: 100%;

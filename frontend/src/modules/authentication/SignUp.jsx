@@ -14,8 +14,6 @@ function SignUp(props) {
     const [values, setValues] = useState({ username: "", password: "", passwordCheck: "" });
     const [error, setError] = useState(false);
     const [finalObject, setFinalObject] = useState({});
-    const [isUsernameAdded, setIsUsernameAdded] = useState(false);
-    let axiosQuery;
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -23,30 +21,25 @@ function SignUp(props) {
     }
 
     async function handleContinue(event) {
+        setError("")
         event.preventDefault();
         const { username, password, passwordCheck } = values;
-        if (username === "" || password === "") {
-            setError("Username and password mustn't be empty");
-        }else if(password !== passwordCheck) {
-            setError("Passwords don't match");
-        } else{
-            setIsFirstPartDone(true);
+        try {
+            const result = await axios.post("http://localhost:3000/check", {"username": username});
+            if (result.data.status === 200) {
+                console.log(result);
+                setError("Username already exists")
+            } else if (username === "" || password === "" || passwordCheck === "") {
+                setError("All fields must be filled");
+            }else if(password !== passwordCheck) {
+                setError("Passwords don't match");
+            } else{
+                setError("")
+                setIsFirstPartDone(true);
+            }
+        } catch (error) {
+            console.log(error);
         }
-        //     // Add user to database 
-        //     try {
-        //         const result = await axios.post("http://localhost:3000/signup",{username: username, password:password})
-        //         console.log(result);
-        //         setIsFirstPartDone(true);
-        //         setFinalObject(prevFinalObject => ({ ...prevFinalObject, username: values.username }));
-        //     } catch (error) {
-        //         if(error.response.status === 409){
-        //             setError("Username already exists");
-        //             setValues(prevState => ({ ...prevState, username: "" }));
-        //         }
-        //         console.error(error);
-        //     }
-            
-        // }
     }
     function handleReturn(event) {
         event.preventDefault()

@@ -10,17 +10,14 @@ function Allergies(props) {
     function handelInputChange(event) {
         const { value } = event.target;
         setUserInput(value.toLowerCase());
-        setIsMatch(false);
         props.error(false);
     }
 
     function handleAdd(event) {
         if (allergens.includes(userInput)) {
-            setIsMatch(true);
             props.error("Allergen already added");
             setUserInput("");
         } else {
-            setIsMatch(false);
             setAllergens(prevAllergens => [...prevAllergens, userInput.toLocaleLowerCase()]);
             setUserInput('');
         }
@@ -42,9 +39,8 @@ function Allergies(props) {
         <div>
             <h3>What are you allergic to?</h3>
             <div className={classes.allergenInputContainer}>
-                <input type="text" className={classes.allergenInput} placeholder="wheat" list="allergens_list" value={userInput} onChange={handelInputChange}/>
-                <input type="text" className={classes.fakeInput} placeholder="wheat" value={userInput}/>
-                <button type="button" className={classes.addAllergenBtn} onClick={handleAdd}><img src="./../../../public/add_recipe_icon.svg" alt="Add" id="addAllergenIcon"/></button>
+                <input type="text" className={classes.input} placeholder="wheat" list="allergens_list" value={userInput} onChange={handelInputChange}/>
+                <button type="button" className={classes.btn} onClick={handleAdd}><img src="./../../../public/add_recipe_icon.svg" alt="Add" id="addAllergenIcon"/></button>
             </div>
             <div className={classes.displayDiv}>
                 {allergens.map(allergen => (

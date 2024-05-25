@@ -7,7 +7,8 @@ function Dropdown(props) {
     const [options, setOptions] = useState([]);
 
     useEffect(() => {
-        props.obj({ diet: selectedOption.toLocaleLowerCase() });
+        props.settingFunction(selectedOption.toLocaleLowerCase())
+        // props.obj({ diet: selectedOption.toLocaleLowerCase() });
     }, [selectedOption]);
     
     useEffect(() => {
@@ -25,8 +26,8 @@ function Dropdown(props) {
     }
 
     return (
-        <div className="dropdown-container">
-            <button type="button" className={classes.maintBtn} onClick={handleClick}>
+        <div className={classes.dropDownContainer}>
+            <button type="button" className={classes.mainBtn} onClick={handleClick}>
                 {selectedOption === "" ? props.text : selectedOption}
             </button>
             {wantToSelect && (

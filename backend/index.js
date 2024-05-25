@@ -226,6 +226,20 @@ app.post("/getUsername", async (req, res) => {
     }
 });
 
+app.post("/check", async (req, res) =>{
+    const {username} = req.body
+    try {
+        const result = await db.query("SELECT id FROM users WHERE username = $1", [username]);
+        if (result.rows.length === 0) {
+            res.json({"status": 404});
+        } else {
+            res.json({"status": 200});
+        }
+    } catch (error) {
+        console.log(error)
+    }
+});
+
 
 
 // Authenticate route 
