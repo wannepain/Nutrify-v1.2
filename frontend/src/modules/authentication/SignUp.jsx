@@ -84,7 +84,7 @@ function SignUp(props) {
                         <GoalActiFac obj={addToObj}/>
                     </div>
                     <button className={styles.btn} onClick={handleSignUp}>Sign up</button>
-                    {!error ? null : <p id='error'>{error}</p>}
+                    {!error ? null : <p className={classes.error}>{error}</p>}
                 </form>
             </div>
         );

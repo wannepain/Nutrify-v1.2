@@ -15,14 +15,14 @@ function GenderAge(props) {
     }
 
     return (
-        <div className={classes.genderAgeContainer}>
+        <div className={classes.mainContainer}>
             <div className={classes.genderContainer}>
                 <h3>What gender are you?</h3>
-                <Dropdown text="Select gender ..." options="male, female" settingFunction={setGender} />
+                <Dropdown text="Select gender..." options="male, female" settingFunction={setGender} />
             </div>
             <div className={classes.ageContainer}>
-                <label htmlFor="age">How old are you?</label>
-                <input type="number" name="age" className={classes.userAge} placeholder="25" onChange={handleChange} value={age} />
+                <label htmlFor="age" className={classes.h3}>How old are you?</label>
+                <input type="number" name="age" className={classes.input} placeholder="25" onChange={handleChange} value={age} />
             </div>
         </div>
     );

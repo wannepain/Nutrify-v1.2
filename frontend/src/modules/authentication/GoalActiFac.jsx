@@ -15,11 +15,11 @@ function GoalActiFac(props) {
         <div className={classes.goalActiFacContainer}>
             <div className={classes.goalContainer}>
                 <h3>What's your goal??</h3>
-                <Dropdown text="Select goal ..." options="Gain weight, Lose weight, Maintain weight" settingFunction={setGoal}/>
+                <Dropdown text="Select..." options="Gain weight, Lose weight, Maintain weight" settingFunction={setGoal}/>
             </div>
             <div className={classes.actiFacContainer} >
                 <h3>How active are you?</h3>
-                <Dropdown text="Select activity level..." options="Sedentary, Light, Moderate, Active, Very active" settingFunction={setActivityLvl} />
+                <Dropdown text="Select..." options="Sedentary, Light, Moderate, Active, Very active" settingFunction={setActivityLvl} />
             </div>
         </div>
     );

@@ -1,7 +1,10 @@
+*{
+    transition: all ease 0.3s;
+}
 .input{
     flex-grow: 2;
     border-radius: 0.5rem;
-    font-size: 1.2rem;
+    font-size: 1.2rem; 
     padding: 0.3rem 0.5rem;
     outline: none;
     border: none;
@@ -39,4 +42,12 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+}
+
+/*Hover styling */
+.btn:hover,
+.input:hover, 
+.allergenInput:hover,
+.allergenBtn:hover{
+    box-shadow: 0px 0px 5px #101820;
 }

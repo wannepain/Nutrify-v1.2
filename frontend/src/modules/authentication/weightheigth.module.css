@@ -1,18 +1,44 @@
-.weightContainer{
-    display: flex;
-    margin-right: 0.5rem;
+*{
+    transition: all 0.5s ease;
 }
 .heightContainer,
 .weightContainer{
     display: flex;
     flex-direction: column;
 }
-.heightContainer input,
-.weightContainer input{
-    border-radius: 0.5rem;
-    padding: 0;
-    padding-left: 1rem;
-}
-.weightHeightContainer{
+.mainContainer{
     display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+}
+.input{
+    width: 100%;
+    border-radius: 0.5rem;
+    font-size: 1.2rem; 
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border: none;
+    appearance: inherit;
+    -moz-appearance: textfield;
+}
+.h3{
+    display: block;
+    font-size: 1.17em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+
+}
+/* Chrome, Safari, Edge, Opera */
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*hover styling*/
+.input:hover{
+    box-shadow: 0px 0px 5px #101820;
 }

@@ -17,9 +17,12 @@ function Allergies(props) {
         if (allergens.includes(userInput)) {
             props.error("Allergen already added");
             setUserInput("");
-        } else {
+        } else if (userInput !== ""){
             setAllergens(prevAllergens => [...prevAllergens, userInput.toLocaleLowerCase()]);
             setUserInput('');
+        } else {
+            props.error("Allergen can't be empty");
+            setUserInput("")
         }
     }
 
