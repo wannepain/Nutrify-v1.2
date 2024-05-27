@@ -89,7 +89,9 @@
 form{
     align-items: center;
 }
-
+.title{
+    text-decoration: underline;
+}
 /*hover styling*/
 .inputContainer:hover,
 .formBtn:hover{

@@ -74,7 +74,7 @@ function SignUp(props) {
             <div className={styles.div}>
                 <h2 onClick={handleBackToFirstPart} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2>
                 <form>
-                    <h1 id="SignUp">Sign up</h1>
+                    <h1 className={classes.title}>Sign up</h1>
                     <div className={styles.secondSignUpContainer}>
                         <input type="hidden" value={values.username} name="username"/>
                         <Allergies error={setError} obj={addToObj}/>
