@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import {Link} from"react-router-dom";
+
 import classes from "./authentication.module.css";
 
 function LogIn(props) {
@@ -49,7 +51,7 @@ function LogIn(props) {
   }
   return (
     <div>
-      <h2 onClick={handleReturn} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2>
+      <Link className={classes.back} to="/"><h2><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2></Link>
       <h1>Log In</h1>
       <form className={classes.form}>
         <div className={classes.inputContainer}>

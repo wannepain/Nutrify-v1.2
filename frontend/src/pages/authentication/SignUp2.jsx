@@ -1,5 +1,5 @@
 import styles from "./signup.module.css";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {useState} from "react";
 
 import Allergies from "./../../modules/authentication/Allergies";
@@ -12,8 +12,8 @@ import classes from "./authentication.module.css"
 function SignUp2(props) {
     const [error, setError] = useState(false);
     const [finalObject, setFinalObject] = useState({});
-    const {state} = useLocation();
-    const { username, password } = state;
+    const location = useLocation();
+    const { username, password } = location.state || {};
 
     function addToObj(object) {
         // Include username in the object obtained from child components
@@ -38,11 +38,10 @@ function SignUp2(props) {
     return (
         <div className={styles.div}>
             {/* <h2 onClick={handleBackToFirstPart} className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2> */}
-            <Link to="basic" className={classes.back}><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</Link>
+            <Link className={classes.back} to=".." type=""><h2><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2></Link>
             <form>
                 <h1 className={classes.title}>Sign up</h1>
                 <div className={styles.secondSignUpContainer}>
-                    <input type="hidden" value={values.username} name="username"/>
                     <Allergies error={setError} obj={addToObj}/>
                     <Diet obj={addToObj}/>
                     <WeightHeight obj={addToObj}/>
