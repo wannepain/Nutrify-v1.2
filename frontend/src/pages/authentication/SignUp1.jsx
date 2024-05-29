@@ -1,12 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";  // Import axios
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
 import classes from "./authentication.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import caretLeft from "./../../../public/caret-left.svg";
 
 function SignUp1(props) {
     const [values, setValues] = useState({ username: "", password: "", passwordCheck: "" });
     const [error, setError] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        const savedValues = JSON.parse(localStorage.getItem("signupValues"));
+        if (savedValues) {
+            setValues(savedValues);
+        }
+    }, []);
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -14,7 +23,7 @@ function SignUp1(props) {
     }
 
     async function handleContinue(event) {
-        event.preventDefault();  // Prevent default form submission behavior
+        event.preventDefault();
         setError("");
         const { username, password, passwordCheck } = values;
         if (username === "" || password === "" || passwordCheck === "") {
@@ -27,8 +36,8 @@ function SignUp1(props) {
                 if (result.data.status === 200) {
                     setError("Username already exists");
                 } else {
-                    console.log(values);
-                    navigate("nutrition", { state: { ...values } }); // Ensure the state is correctly passed
+                    localStorage.setItem("signupValues", JSON.stringify(values));
+                    navigate("nutrition", { state: { ...values } });
                 }
             } catch (error) {
                 setError("An error occurred. Please try again.");
@@ -38,7 +47,7 @@ function SignUp1(props) {
 
     return (
         <div>
-            <Link className={classes.back} to="/"><h2><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2></Link>
+            <Link className={classes.back} to="/"><h2><img src={caretLeft} alt="Back" className={classes.backIcon} /> Go back</h2></Link>
             <form className={classes.form} onSubmit={handleContinue}>
                 <h1 className={classes.h1}>Sign up</h1>
                 <div className={classes.inputContainer}>
@@ -70,8 +79,8 @@ function SignUp1(props) {
                         autoComplete='new-password'
                     />
                 </div>
-                {!error ? null : <p className={classes.error}>{error}</p>}
-                <button type="button" onClick={handleContinue} className={classes.formBtn}>Continue</button>
+                {error && <p className={classes.error}>{error}</p>}
+                <button type="submit" className={classes.formBtn}>Continue</button>
             </form>
         </div>
     );

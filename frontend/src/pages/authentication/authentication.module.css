@@ -3,6 +3,8 @@
     user-select: none;
     cursor: pointer;
     transition: all ease 0.3s;
+    text-decoration: none;
+    color: #101820;
 }
 .motherDiv{
     width: 25%;
