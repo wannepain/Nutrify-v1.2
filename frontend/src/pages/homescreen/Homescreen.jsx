@@ -1,8 +1,12 @@
 import { Outlet } from "react-router-dom";
+import NavBar from "./../../modules/homescreen/NavBar";
 
 function Homescreen(props) {
     return (
-        <Outlet/>
+        <div>
+            <NavBar/>
+            <Outlet/>
+        </div>
     )
 }
 

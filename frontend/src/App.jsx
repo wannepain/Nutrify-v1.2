@@ -7,7 +7,7 @@ import SignUp2 from "./pages/authentication/SignUp2";
 import Welcome from "./pages/authentication/Welcome";
 import AddRecipes from "./pages/homescreen/AddRecipe";
 import Homescreen from './pages/homescreen/Homescreen';
-import Recipes from "./pages/homescreen/Recipes";
+import Recipes, {Loader} from "./pages/homescreen/Recipes";
 
 const router = createBrowserRouter([
   { //authentication
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Homescreen />,
     children:[
-      {index: true, element: <Recipes />},
+      {index: true, element: <Recipes />, loader: Loader()},
       {path:"add", element: <AddRecipes />}
     ]
   }
