@@ -5,7 +5,13 @@ import { useLoaderData } from 'react-router-dom';
 // Loader function to fetch weekly recipes
 async function Loader() {
   try {
-    const result = await axios.post('http://localhost:3000/weeklyRecipes');
+    const token = localStorage.getItem("jwtToken");
+    console.log(token);
+    const result = await axios.post('http://localhost:3000/weeklyRecipes',{}, {
+      headers: {
+        "authorization": token
+      }
+    });
     if (result.status !== 200) {
       throw new Error('Failed to fetch weekly recipes');
     } else {

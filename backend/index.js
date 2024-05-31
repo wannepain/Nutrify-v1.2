@@ -178,27 +178,33 @@ app.post("/add/recipe", async (req, res) => {
 });
 
 app.post("/weeklyRecipes", async (req, res) => {
+    console.log(req.headers);
     const { id } = idFromHeader(req.headers.authorization)
     // console.log(id);
-    try {
-        // const id = 3;
-        const d = new Date();
-        // if (d.getDay() === 0) { // if today is Sunday
-            const queryParArray = [await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id),  await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id), id]
-            const queryText =  "UPDATE weekly_recipes SET sunday=$1, monday=$2, tuesday=$3, wednesday=$4, thursday=$5, friday=$6, saturday=$7 WHERE user_id = $8 RETURNING *"
-            const result = await db.query(queryText, queryParArray); 
-            console.log(result.rows)
-            res.status(200).json({ weekRecipes: result.rows });
-        // } else {
-        //     console.log("different day");
-        //     const result = await db.query("SELECT monday, tuesday, wednesday, thursday, friday, saturday, sunday FROM weekly_recipes WHERE user_id = $1", [id]);
-        //     console.log(result);
-        //     res.status(200).json({ weekRecipes: result.rows });
-        // }
-    } catch (error) {
-        console.error("Error retrieving or updating weekly recipes:", error);
-        res.status(500).json({ error: "Internal Server Error" });
+    if (!id) {
+        res.status(400).json("no authorization headers present");
+    } else {
+        try {
+            // const id = 3;
+            const d = new Date();
+            // if (d.getDay() === 0) { // if today is Sunday
+                const queryParArray = [await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id),  await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id), id]
+                const queryText =  "UPDATE weekly_recipes SET sunday=$1, monday=$2, tuesday=$3, wednesday=$4, thursday=$5, friday=$6, saturday=$7 WHERE user_id = $8 RETURNING *"
+                const result = await db.query(queryText, queryParArray); 
+                console.log(result.rows)
+                res.status(200).json({ weekRecipes: result.rows });
+            // } else {
+            //     console.log("different day");
+            //     const result = await db.query("SELECT monday, tuesday, wednesday, thursday, friday, saturday, sunday FROM weekly_recipes WHERE user_id = $1", [id]);
+            //     console.log(result);
+            //     res.status(200).json({ weekRecipes: result.rows });
+            // }
+        } catch (error) {
+            console.error("Error retrieving or updating weekly recipes:", error);
+            res.status(500).json({ error: "Internal Server Error" });
+        }
     }
+    
 });
 app.post("/getrecipe", async (req, res)=>{
     const {id} = req.body;
@@ -260,6 +266,16 @@ app.post('/login/local', function(req, res, next) {
       });
     })(req, res, next);
   });
+
+app.post("/check/token", (req, res)=>{
+    const result = idFromHeader(req.headers.authorization);
+    if(!result){
+        res.json({message:"token invalid"}).status(400);
+    } else{
+        res.json({message:"token valid"}).status(200);
+    }
+}
+)
 
 async function calcDailyCalories(user_id, gender, current_weight, height, age, acti_fac, goal) {
     // console.log(407, user_id);
@@ -366,23 +382,23 @@ async function calcDailyCalories(user_id, gender, current_weight, height, age, a
     }
 }
 
-        
 function idFromHeader(headerAuthorization) { // expects the req.headers.authorization !!
-    const token = headerAuthorization.split(' ')[1];
-    // Now you can verify the JWT token or use its information as needed
-    // For example:
-    try {
-        const decodedToken = jwt.verify(token, 'QWERTY');
-        // console.log(decodedToken);
-        // res.send('Token verified successfully');
-        return decodedToken
-    } catch (error) {
-        console.error(522, 'Token verification failed:', error);
-        // res.status(401).send('Unauthorized');
-        return error
+    
+    console.log(headerAuthorization);
+    if (!headerAuthorization) {
+      console.error('Authorization header is missing');
+      return false;
     }
-}
-
+  
+    try {
+      const decodedToken = jwt.verify(headerAuthorization, 'QWERTY');
+      console.log('Decoded Token:', decodedToken);
+      return decodedToken;
+    } catch (error) {
+      console.error('Token verification failed:', error.message);
+      return false;
+    }
+  }
 
 async function selectRecipes(mealCalories, nutriInfo, meal) {
     let totalCalories = 0;

@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     path: "/home",
     element: <Homescreen />,
     children:[
-      {index: true, element: <Recipes />, loader: Loader()},
+      {index: true, element: <Recipes />, loader: Loader},
       {path:"add", element: <AddRecipes />}
     ]
   }

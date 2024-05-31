@@ -56,7 +56,7 @@ function SignUp2(props) {
                     <GenderAge obj={addToObj} />
                     <GoalActiFac obj={addToObj} />
                 </div>
-                <button onClick={handleSignUp}>Sign up</button>
+                <button onClick={handleSignUp} className={styles.btn}>Sign up</button>
                 {!error ? null : <p className={classes.error}>{error}</p>}
             </form>
         </div>
