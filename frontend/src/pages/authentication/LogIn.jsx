@@ -6,8 +6,12 @@ import classes from "./authentication.module.css";
 
 function LogIn(props) {
   const [values, setValues] = useState({ username: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(false)
   const navigate = useNavigate();
+
+  const showSrc = "./../../public/eye.svg";
+  const hideSrc = "./../../public/eye-slash.svg";
 
   useEffect(() => {
     const savedValues = JSON.parse(localStorage.getItem("username_password"));
@@ -54,30 +58,49 @@ function LogIn(props) {
       }
     }
   };
+
+  function handleShowPassword() {
+    setShowPassword(!showPassword)
+  }
   return (
-    <div>
+    <div className={classes.motherDiv}>
       <Link className={classes.back} to="/"><h2><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2></Link>
       <h1>Log In</h1>
       <form className={classes.form}>
         <div className={classes.inputContainer}>
-          <input
-            name='username'
-            className={`${classes.topInput} ${classes.input}`}
-            type="text"
-            placeholder="Username"
-            value={values.username}
-            onChange={handleChange}
-            autoComplete='username'
-          />
-          <input
-            name='password'
-            className={`${classes.bottomInput} ${classes.input}`}
-            type="password"
-            placeholder="Password"
-            value={values.password}
-            onChange={handleChange}
-            autoComplete='current-password'
-          />
+          <div className={classes.labelContainer}>
+            <label htmlFor="username" className={classes.h3}>Your username:</label>
+            <input
+              name='username'
+              className={`${classes.topInput} ${classes.input}`}
+              type="text"
+              placeholder="Username"
+              value={values.username}
+              onChange={handleChange}
+              autoComplete='username'
+            />
+          </div>
+          
+          <div className={classes.labelContainer}>
+            <label htmlFor="password" className={classes.h3}>Your password:</label>
+            <input
+              name='password'
+              className={`${classes.bottomInput} ${classes.input}`}
+              type={showPassword ? "text":"password"}
+              placeholder="Password"
+              value={values.password}
+              onChange={handleChange}
+              autoComplete='current-password'
+            />
+              <h3 className={classes.showPassword}>
+                <img 
+                    src={showPassword ? hideSrc : showSrc} 
+                    data-name="password"
+                    onClick={handleShowPassword}
+                    alt="Show/Hide Password"
+                />
+              </h3>
+          </div>
         </div>
         {!error ? null : <p className={classes.error}>{error}</p>}
         <button className={classes.formBtn} onClick={handleLogin}>Login</button>

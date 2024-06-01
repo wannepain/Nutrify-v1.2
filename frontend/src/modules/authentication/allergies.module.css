@@ -51,3 +51,7 @@
 .allergenBtn:hover{
     box-shadow: 0px 0px 5px #101820;
 }
+.h3{
+    font-size: 1rem;
+    font-weight: 500;
+}

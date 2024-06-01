@@ -46,7 +46,7 @@ function Allergies(props) {
 
     return (
         <div>
-            <h3>What are you allergic to?</h3>
+            <h3 className={classes.h3}>What are you allergic to?</h3>
             <div className={classes.allergenInputContainer}>
                <input type="text" className={classes.input} placeholder="wheat" list="allergens_list" value={userInput} onChange={handleInputChange}/>
                 <button type="button" className={classes.btn} onClick={handleAdd}><img src="./../../../public/add_recipe_icon.svg" alt="Add" id="addAllergenIcon"/></button>

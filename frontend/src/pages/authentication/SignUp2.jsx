@@ -26,15 +26,18 @@ function SignUp2(props) {
     async function handleSignUp(event) {
         event.preventDefault();
         console.log(finalObject);
+        const axiosObj = {...finalObject, username: username}
         try {
             const result = await axios.post("http://localhost:3000/signup", { username: username, password: password });
-            const result2 = await axios.post("http://localhost:3000/signup/nutrition", finalObject);
+            console.log(result);
+            const result2 = await axios.post("http://localhost:3000/signup/nutrition", axiosObj);
+            console.log(result2);
             if (result.status === 200 && result2.status === 200) {
                 localStorage.removeItem("signUpValues")
                 //create the first weekly recipes
+                localStorage.clear();
                 navigate("/home");
             }
-            console.log(result.data.rows, result2.data.rows);
         } catch (error) {
             console.log(error);
         }
