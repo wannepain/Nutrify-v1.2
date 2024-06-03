@@ -88,7 +88,7 @@ app.post("/signup", async (req, res) => {
 ////////////////////////////// MENU CREATION ////////////////////////////////////////////////////////////////////
 
 app.post("/signup/nutrition", async (req, res) => {
-    const { username, allergies, diet, weight, height, goal, gender, age, actiFac } = req.body;
+    const { username, allergens: allergies, diet, weight, height, goal, gender, age, activity: actiFac } = req.body;
     
     try {
         // Check if username is provided
@@ -399,6 +399,123 @@ function idFromHeader(headerAuthorization) { // expects the req.headers.authoriz
       return false;
     }
   }
+// async function selectRecipesFormeal(mealCalories, nutriInfo, meal) {
+//     let totalCalories = 0;
+//     let courses;
+//     const selectedRecs = {
+//         first: null,
+//         main: null,
+//         dessert: null,
+//         };
+        
+
+//     if (meal === "breakfast" || meal === "snack") {
+//         courses = {
+//             total: 1,
+//             courseCal: [mealCalories],
+//             course: ["main"]
+//         };
+//     } else {
+//         courses = {
+//             total: 3,
+//             courseCal: [(mealCalories / 100) * 10, (mealCalories / 100) * 60, (mealCalories / 100) * 30],
+//             course: ["first", "main", "dessert"]
+//         };
+//     }
+//     let selectedRedcipesArray = []; 
+//     while (totalCalories < mealCalories) {
+//         for (let courseIndex = 0; courseIndex < courses[courseCal].length; courseIndex++) {
+//             // let startCourseIndex = courseIndex;
+//             // let endCourseIndex;
+//             let currentCourseCals = Math.floor(courses.courseCal[courseIndex]);
+//             let currentCourse = courses.course[courseIndex];
+//             let recipeCals; 
+//             while (recipeCals < currentCourseCals) {
+                
+//                 try {
+//                     db.query("SELECT id FROM recipes WHERE")
+//                 } catch (error) {
+//                     console.log(error);
+//                 }
+//             }
+            
+//         }
+//     }
+// }
+// async function selectRecipes(mealCalories, nutriInfo, meal) {
+    // let totalCalories = 0;
+    // let courses;
+    // const selectedRecs = {
+    //     first: null,
+    //     main: null,
+    //     dessert: null,
+    //     };
+        
+
+    // if (meal === "breakfast" || meal === "snack") {
+    //     courses = {
+    //         total: 1,
+    //         courseCal: [mealCalories],
+    //         course: ["main"]
+    //     };
+    // } else {
+    //     courses = {
+    //         total: 3,
+    //         courseCal: [(mealCalories / 100) * 10, (mealCalories / 100) * 60, (mealCalories / 100) * 30],
+    //         course: ["first", "main", "dessert"]
+    //     };
+    // }
+//     while (totalCalories < mealCalories) {
+        
+
+//         for (let i = 0; i < courses.total; i++) {
+//             let currentCourseCalories = Math.floor(courses.courseCal[i]);
+//             let currentCourse = courses.course[i];
+//             let selectedRecipeIds = [];
+
+//             let query = `SELECT id FROM recipes WHERE $1 = ANY(diet) AND calories <= $2 AND $3 = ANY(meal) AND course = $4`;
+            
+//             if (selectedRecs[courses.course[i - 1]] != null) { //if previous course has a value 
+                
+//                 selectedRecipeIds.push(selectedRecs[courses.course[i - 1]].id); //adds the previous recipe id to the selected array
+//                 query += ` AND id NOT IN (${selectedRecipeIds.map((_, i) => `$${i + 5}`).join(', ')})`;
+//             }
+
+//             query += ` ORDER BY RANDOM() LIMIT 1`;
+
+//             try {
+//                 let selectedRec = null;
+//                 const paramsArray = selectedRecs[courses.course[i - 1]] != null
+//                     ? [nutriInfo.rows[0].diet, currentCourseCalories, meal, currentCourse, ...selectedRecipeIds] 
+//                     : [nutriInfo.rows[0].diet, currentCourseCalories, meal, currentCourse];
+
+//                 const result = await db.query(query, paramsArray);
+
+//                 if (result.rows.length !== 0) {
+//                     console.log(`No recipes available for ${currentCourse}`);
+//                     //totalCalories = mealCalories; // to break the while loop 
+//                     selectedRec = result.rows[0];
+
+//                     totalCalories += selectedRec.calories;
+//                     selectedRecs[currentCourse] = selectedRec.id;
+                    
+//                 } else {
+//                     console.log(`No recipes available for ${currentCourse}`);
+//                     continue;
+//                 }
+
+                
+
+//             } catch (error) {
+//                 console.error("Error selecting recipe:", error);
+//                 // Handle error gracefully, possibly retry or skip this iteration
+//                 break;
+//             }
+//         }
+//     }
+
+//     return selectedRecs;
+// }
 
 async function selectRecipes(mealCalories, nutriInfo, meal) {
     let totalCalories = 0;
@@ -407,8 +524,7 @@ async function selectRecipes(mealCalories, nutriInfo, meal) {
         first: null,
         main: null,
         dessert: null,
-        };
-        
+    };
 
     if (meal === "breakfast" || meal === "snack") {
         courses = {
@@ -423,47 +539,48 @@ async function selectRecipes(mealCalories, nutriInfo, meal) {
             course: ["first", "main", "dessert"]
         };
     }
+
     while (totalCalories < mealCalories) {
-        
+        let selectedRecipeIds = [];
 
         for (let i = 0; i < courses.total; i++) {
             let currentCourseCalories = Math.floor(courses.courseCal[i]);
             let currentCourse = courses.course[i];
-            let selectedRecipeIds = [];
 
-            let query = `SELECT id FROM recipes WHERE $1 = ANY(diet) AND calories <= $2 AND $3 = ANY(meal) AND course = $4`;
+            let query = `SELECT id, calories FROM recipes WHERE $1 = ANY(diet) AND calories <= $2 AND $3 = ANY(meal) AND course = $4`;
             
-            if (selectedRecs[courses.course[i - 1]] != null) { //if previous course has a value 
-                
-                selectedRecipeIds.push(selectedRecs[courses.course[i - 1]].id); //adds the previous recipe id to the selected array
-                query += ` AND id NOT IN (${selectedRecipeIds.map((_, i) => `$${i + 5}`).join(', ')})`;
+            if (selectedRecs[courses.course[i - 1]] != null) {
+                selectedRecipeIds.push(selectedRecs[courses.course[i - 1]]);
+                query += ` AND id NOT IN (${selectedRecipeIds.map((_, index) => `$${index + 5}`).join(', ')})`;
             }
 
             query += ` ORDER BY RANDOM() LIMIT 1`;
 
             try {
                 const paramsArray = selectedRecs[courses.course[i - 1]] != null
-                    ? [nutriInfo.rows[0].diet, currentCourseCalories, meal, currentCourse, ...selectedRecipeIds] 
+                    ? [nutriInfo.rows[0].diet, currentCourseCalories, meal, currentCourse, ...selectedRecipeIds]
                     : [nutriInfo.rows[0].diet, currentCourseCalories, meal, currentCourse];
 
                 const result = await db.query(query, paramsArray);
 
                 if (result.rows.length === 0) {
                     console.log(`No recipes available for ${currentCourse}`);
-                    //totalCalories = mealCalories; // to break the while loop 
-                    continue;
-                } 
+                    break; // Break the for loop if no recipes are available
+                }
 
-                const selectedRec = result.rows[0];
-
+                let selectedRec = result.rows[0];
                 totalCalories += selectedRec.calories;
-                selectedRecs[currentCourse] = selectedRec.id;
+                selectedRecs[currentCourse] = selectedRec.id; // Store only the ID
 
             } catch (error) {
                 console.error("Error selecting recipe:", error);
-                // Handle error gracefully, possibly retry or skip this iteration
-                break;
+                break; // Break the loop on error
             }
+        }
+
+        // If no valid recipes were found in this iteration, break the while loop
+        if (selectedRecipeIds.length === 0) {
+            break;
         }
     }
 
