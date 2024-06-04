@@ -1,4 +1,4 @@
-.hiden{
+/* .hiden{
     display: none;
 }
 .navbar{
@@ -19,11 +19,11 @@ ul{
 }
 .prevent-select {
     -webkit-user-select: none; /* Safari */
-    -ms-user-select: none; /* IE 10 and IE 11 */
-    user-select: none; /* Standard syntax */
+    /*-ms-user-select: none; /* IE 10 and IE 11 */
+    /*user-select: none; /* Standard syntax 
 }
 /*MEDIA QUERIES:*/
-@media  screen and (min-width: 720px) and (orientation: landscape){
+/*@media  screen and (min-width: 720px) and (orientation: landscape){
     .imgContainer{
         width: fit-content;
     }
@@ -94,4 +94,9 @@ ul{
 .iconBtn{
     background-color: transparent;
     border: none;
+} */
+
+.navbar{
+    position: absolute;
+    width: 100%;
 }
