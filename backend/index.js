@@ -75,7 +75,9 @@ app.post("/signup", async (req, res) => {
                     const result = await db.query("INSERT INTO users (username, password) VALUES ($1, $2) RETURNING *", [username, hash]);
                     const newUser = result.rows[0];
                     console.log("User registered:", newUser);
-                    res.sendStatus(201); // Created
+
+                    const token = jwt.sign({ id: newUser.id }, 'QWERTY', { expiresIn: '24h' }); //creates a token for the front end
+                    res.status(200).json({ message: "Authentication successful", user: newUser , token: token });
                 }
             });
         }

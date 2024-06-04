@@ -3,42 +3,67 @@ import axios from 'axios';
 import { useLoaderData } from 'react-router-dom';
 
 // Loader function to fetch weekly recipes
-async function Loader() {
-  try {
-    const token = localStorage.getItem("jwtToken");
+export async function Loader() {
+  const token = localStorage.getItem("jwtToken");
+  if (token) {
     console.log(token);
-    const result = await axios.post('http://localhost:3000/weeklyRecipes',{}, {
-      headers: {
-        "authorization": token
+
+    try {
+      const result = await axios.post('http://localhost:3000/weeklyRecipes', {}, {
+          headers: {
+            "authorization": token
+          }
+        });
+      if (result.status === 200) {
+        console.log(result.data);
+        return { weeklyRecipes: result.data.weekRecipes };
+        
+      } else {
+        console.log(result);
+        return false;
       }
-    });
-    if (result.status !== 200) {
-      throw new Error('Failed to fetch weekly recipes');
-    } else {
-      return result.data.weeklyRecipes; // Correctly access the data
+    } catch (error) {
+      console.log(error);
+      return error;
     }
-  } catch (error) {
-    console.log(error);
-    throw error; // Re-throw the error to be caught by React Router
+  } else{
+    console.log("token does not exist");
+    return false;
   }
+
+
+  
 }
 
 // Main component to display recipes
 function Recipes() {
   const data = useLoaderData();
-  
-  console.log(data);
+  const recipes = data? data.weeklyRecipes : false;
+
+  let jsxToRender;
   
   if (!data) {
     return <h1>Loading...</h1>; // Loading state
+  }
+  if (recipes === undefined || !recipes) {
+    jsxToRender=(
+      <h1>RECIPES ARE {`${recipes}`}</h1>
+    )
+  } else{
+    jsxToRender = (
+      <>
+        {recipes.map((recipe, index) => (
+          <RecipeDayCard key={index} recipe={recipe} />
+        ))}
+      </>
+      
+    )
   }
 
   return (
     <div>
       <h1>Hello from Recipes</h1>
-      {data.map((recipe, index) => (
-        <RecipeDayCard key={index} recipe={recipe} />
-      ))}
+      {jsxToRender}
     </div>
   );
 }
@@ -54,4 +79,4 @@ function RecipeDayCard({ recipe }) {
   );
 }
 
-export { Recipes as default, Loader };
+export default Recipes;

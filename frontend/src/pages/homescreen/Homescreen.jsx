@@ -5,7 +5,8 @@ function Homescreen(props) {
     return (
         <div>
             <NavBar/>
-            <Outlet/>
+            <h1>Hello from homescreen</h1>
+            {/* <Outlet/> */}
         </div>
     )
 }

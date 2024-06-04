@@ -123,13 +123,15 @@ function SignUp2(props) {
         let result2;
         try {
             result1 = await axios.post("http://localhost:3000/signup", { username: username, password: password });
-            if (result1.status === 201) {
+            if (result1.status === 200) {
                 try {
                     result2 = await axios.post("http://localhost:3000/signup/nutrition", axiosObj);
-                    console.log(result2);
+                    const token = result1.data.token;
+                    console.log(token);
                     if (result2.status === 200) {
                         localStorage.removeItem("signUpValues");
                         localStorage.clear();
+                        localStorage.setItem("jwtToken", token)
                         navigate("/home");
                     } else {
                         console.error("Sign up failed with statuses:", result1.status, result2.status);
