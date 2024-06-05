@@ -110,11 +110,13 @@ ul{
 }
 .phoneContainer{
     display: flex;
-    text-decoration: none;
-
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0.5rem;
 }
 .iconBtn img{
     filter: invert(68%) sepia(66%) saturate(904%) hue-rotate(360deg) brightness(106%) contrast(105%);
+    width: 3rem;
 }
 
 @media  screen and (min-width: 720px) and (orientation: landscape){ 
@@ -123,6 +125,7 @@ ul{
         display: none;
     }
     .navbar{
+        display: block;
         position: absolute;
         width: 100%;
         top: 0;
