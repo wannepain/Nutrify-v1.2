@@ -96,7 +96,62 @@ ul{
     border: none;
 } */
 
+/*PHONE styling*/
 .navbar{
+    display: none;
+}
+
+.phoneNavBar{
     position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: #101820;
     width: 100%;
+}
+.phoneContainer{
+    display: flex;
+    text-decoration: none;
+
+}
+.iconBtn img{
+    filter: invert(68%) sepia(66%) saturate(904%) hue-rotate(360deg) brightness(106%) contrast(105%);
+}
+
+@media  screen and (min-width: 720px) and (orientation: landscape){ 
+/*PC STYLING*/
+    .phoneNavBar{
+        display: none;
+    }
+    .navbar{
+        position: absolute;
+        width: 100%;
+        top: 0;
+        left: 0;
+        background-color: #101820;
+    }
+    .container{
+        display: flex;
+        text-decoration: none;
+        justify-content: space-between;
+        padding: 0.5rem 0;
+    }
+    .linkContainer, .imgContainer{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .linkContainer{
+        margin-right: 3rem;
+    }
+    .linkContainer a{
+        margin: 0 2rem;
+        color: #FFC600;
+    }
+    .imgContainer{
+        margin-left: 2rem;
+    }
+    .imgContainer img{
+        width: 3rem;
+        filter: invert(68%) sepia(66%) saturate(904%) hue-rotate(360deg) brightness(106%) contrast(105%);
+    }
 }

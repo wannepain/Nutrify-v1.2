@@ -14,7 +14,7 @@ function NavBar(props) {
                 </ul>
             </div>
              <footer className={classes.phoneNavBar}>
-                 <ul>
+                 <ul className={classes.phoneContainer}>
                      <li>
                          <Link to="/home" className={classes.iconBtn}>
                              <img src="/home_icon.svg" alt="Home" />
