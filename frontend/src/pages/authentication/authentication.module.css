@@ -7,7 +7,7 @@
     color: #101820;
 }
 .motherDiv{
-    width: 30%;
+    width: 80%;
 }
 .backIcon{
     width: 1rem;
@@ -96,6 +96,12 @@ form{
 .title{
     text-decoration: underline;
 }
+@media  screen and (min-width: 720px) and (orientation: landscape){ 
+    .motherDiv{
+        width: 30%;
+    }
+}
+
 /*hover styling*/
 .formBtn:hover{
     box-shadow: 0px 0px 8px #101820 ;
