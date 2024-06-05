@@ -117,13 +117,22 @@ ul{
 .iconBtn img{
     filter: invert(68%) sepia(66%) saturate(904%) hue-rotate(360deg) brightness(106%) contrast(105%);
     width: 3rem;
+    opacity: 0.6;
+    transition: all 1s ease;
 }
+.currentIcon{
+    opacity: 1 !important ; 
+}
+/*HOVER STYLING*/
+
+
 
 @media  screen and (min-width: 720px) and (orientation: landscape){ 
 /*PC STYLING*/
     .phoneNavBar{
         display: none;
     }
+    
     .navbar{
         display: block;
         position: absolute;
@@ -149,6 +158,13 @@ ul{
     .linkContainer a{
         margin: 0 2rem;
         color: #FFC600;
+        opacity: 0.6;
+        /* text-decoration: none; */
+        transition: all ease 1s;
+    }
+    .currentLink{
+        opacity: 1 !important;
+        /* text-decoration: underline !important; */
     }
     .imgContainer{
         margin-left: 2rem;
@@ -157,4 +173,6 @@ ul{
         width: 3rem;
         filter: invert(68%) sepia(66%) saturate(904%) hue-rotate(360deg) brightness(106%) contrast(105%);
     }
+    /*HOVER STYLING*/
 }
+
