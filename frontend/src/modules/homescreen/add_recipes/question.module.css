@@ -1,0 +1,21 @@
+.questionContainer{
+    position: relative;
+}
+.dataContainer{
+    position: absolute;
+    background-color: #FFC600;
+    width: 10rem;
+    top: 0;
+    z-index: 2;
+    left: 1rem;
+    padding: 0 1rem;;
+}
+
+.questionMark{
+    padding: 0.3rem;
+    font-size: 1rem;
+}
+/*HOVER STYLING*/
+.questionMark:hover{
+    text-decoration: underline;
+}

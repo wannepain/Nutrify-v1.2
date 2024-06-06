@@ -1,6 +1,8 @@
-function AddRecipes(props) {
+import { Outlet } from "react-router-dom";
+
+function AddRecipes() {
     return(
-        <h1>Add Recipe</h1>
+        <Outlet/>
     )
 }
 

@@ -1,0 +1,29 @@
+.motherDiv{
+    width: 110%;
+}
+
+.inlineLabel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.inputContainer{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.2rem;
+}
+.textInput{
+    border-radius: 0.5rem;
+    font-size: 1.2rem; 
+    padding: 0.3rem 0.5rem;
+    outline: none;
+    border: none;
+    transition: all ease 0.3s;
+}
+.continueLink{
+    text-decoration: none;
+    background-color: #101820;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
+    color: white;
+}

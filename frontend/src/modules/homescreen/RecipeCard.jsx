@@ -4,4 +4,4 @@ function RecipeCard(props) {
     )
 }
 
-export default RecipeCard;
+export default RecipeCard; 

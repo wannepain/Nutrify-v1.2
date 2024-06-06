@@ -1,5 +1,6 @@
 // src/pages/Recipes.js
 import axios from 'axios';
+import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
 
 // Loader function to fetch weekly recipes
@@ -16,7 +17,7 @@ export async function Loader() {
         });
       if (result.status === 200) {
         console.log(result.data);
-        return { weeklyRecipes: result.data.weekRecipes };
+        return { weeklyRecipes: result.data.weekRecipes, result: result };
         
       } else {
         console.log(result);
@@ -39,7 +40,10 @@ export async function Loader() {
 function Recipes() {
   const data = useLoaderData();
   const recipes = data? data.weeklyRecipes : false;
-
+  useEffect(() => {
+    console.log(data);
+  }, [data])
+  
   let jsxToRender;
   
   if (!data) {
@@ -67,16 +71,4 @@ function Recipes() {
     </div>
   );
 }
-
-// Assuming RecipeDayCard is a component that you want to use to display each day's recipe
-function RecipeDayCard({ recipe }) {
-  return (
-    <div>
-      <h2>{recipe.day}</h2>
-      <p>{recipe.name}</p>
-      {/* Other recipe details */}
-    </div>
-  );
-}
-
-export default Recipes;
+ export default Recipes;
