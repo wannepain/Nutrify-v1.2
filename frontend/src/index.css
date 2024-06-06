@@ -8,9 +8,42 @@
 body {
   width: 100%;
   height: 100%;
-  background-color: #FFC600;
   margin: 0;
+  background-color: #FFC600;
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #101820, #FFC600), repeating-radial-gradient(circle at center center, #101820, #101820, 9px, transparent 18px, transparent 9px);
+  background-blend-mode: multiply;
 }
+/* body {
+  background: linear-gradient(226deg, #ffc600, #34373b);
+  background-size: 400% 400%;
+
+  -webkit-animation: movingBg 17s ease infinite;
+  -moz-animation: movingBg 17s ease infinite;
+  -o-animation: movingBg 17s ease infinite;
+  animation: movingBg 17s ease infinite;
+}
+
+@-webkit-keyframes movingBg {
+  0%{background-position:0% 94%}
+  50%{background-position:100% 7%}
+  100%{background-position:0% 94%}
+}
+@-moz-keyframes movingBg {
+  0%{background-position:0% 94%}
+  50%{background-position:100% 7%}
+  100%{background-position:0% 94%}
+}
+@-o-keyframes movingBg {
+  0%{background-position:0% 94%}
+  50%{background-position:100% 7%}
+  100%{background-position:0% 94%}
+}
+@keyframes movingBg {
+  0%{background-position:0% 94%}
+  50%{background-position:100% 7%}
+  100%{background-position:0% 94%}
+} */
  html{
   height: 100%;
  }
