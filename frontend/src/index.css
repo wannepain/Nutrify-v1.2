@@ -3,53 +3,35 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Oswald', 'Sans-serif';
-
 }
-body {
+
+html, body {
   width: 100%;
   height: 100%;
   margin: 0;
+  padding: 0;
   background-color: #FFC600;
-  opacity: 1;
+}
+
+body {
+  /* Set the initial background */
   background-image: radial-gradient(circle at center center, #101820, #FFC600), repeating-radial-gradient(circle at center center, #101820, #101820, 9px, transparent 18px, transparent 9px);
   background-blend-mode: multiply;
-}
-/* body {
-  background: linear-gradient(226deg, #ffc600, #34373b);
-  background-size: 400% 400%;
 
-  -webkit-animation: movingBg 17s ease infinite;
-  -moz-animation: movingBg 17s ease infinite;
-  -o-animation: movingBg 17s ease infinite;
-  animation: movingBg 17s ease infinite;
+
+  /* Animation setup */
+  animation: zoomBackground 7s linear 0s infinite alternate;
 }
 
-@-webkit-keyframes movingBg {
-  0%{background-position:0% 94%}
-  50%{background-position:100% 7%}
-  100%{background-position:0% 94%}
+/* Keyframes for the zooming animation */
+@keyframes zoomBackground {
+  from {background-color: #FFC600;}
+  to{background-color: red;}
 }
-@-moz-keyframes movingBg {
-  0%{background-position:0% 94%}
-  50%{background-position:100% 7%}
-  100%{background-position:0% 94%}
-}
-@-o-keyframes movingBg {
-  0%{background-position:0% 94%}
-  50%{background-position:100% 7%}
-  100%{background-position:0% 94%}
-}
-@keyframes movingBg {
-  0%{background-position:0% 94%}
-  50%{background-position:100% 7%}
-  100%{background-position:0% 94%}
-} */
- html{
-  height: 100%;
- }
- #root{
+
+#root {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
- }
+}
