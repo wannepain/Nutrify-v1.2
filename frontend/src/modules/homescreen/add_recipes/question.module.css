@@ -1,16 +1,30 @@
-.questionContainer{
+/* .questionContainer{
     position: relative;
+} */
+.background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    background: rgba(16, 24, 32, 0.7);
+}
+.title{
+    margin-bottom: 0.2rem;
+    font-size: 1.3rem;
+}
+.text{
+    font-size: 1rem;
 }
 .dataContainer{
-    position: absolute;
-    background-color: #FFC600;
-    width: 10rem;
-    top: 0;
-    z-index: 2;
-    left: 1rem;
-    padding: 0 1rem;;
+    background-color: #101820;
+    width: 15rem;
+    border-radius: 0.3rem;
+    padding: 0.3rem;
 }
-
 .questionMark{
     padding: 0.3rem;
     font-size: 1rem;

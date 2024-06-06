@@ -1,11 +1,16 @@
 .motherDiv{
-    width: 110%;
+    background: #101820;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
 }
-
+.title{
+    color: #FFC600;
+}
 .inlineLabel{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    color: white;
 }
 .inputContainer{
     display: flex;
@@ -22,8 +27,16 @@
 }
 .continueLink{
     text-decoration: none;
-    background-color: #101820;
+    background-color: #FFC600;
     border-radius: 0.3rem;
     padding: 0.3rem;
     color: white;
+    display: inline-block;
+    width: 100%;
+    margin-top: 0.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.returnLink{
+    text-decoration: none;
 }

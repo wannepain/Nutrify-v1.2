@@ -1,0 +1,8 @@
+.motherDiv{
+    width: 95%;
+}
+@media  screen and (min-width: 720px) and (orientation: landscape){
+    .motherDiv{
+        width: 40%;
+    }
+}

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import classes from "./imginput.module.css";
 
-function ImgInput(params) {
+function ImgInput(props) {
     const [addedImg, setAddedImg] = useState(null);
 
     function handleShowInput(event) {
@@ -25,12 +25,23 @@ function ImgInput(params) {
     }
 
     return(
+        // <div className={classes.imgInputDiv}>
+        //     <img 
+        //         src={addedImg !== null ? addedImg : "/add_recipe_icon.svg"} 
+        //         alt="recipe image" onClick={handleShowInput}
+        //         className={addedImg !== null? null : classes.svgAddImage}
+        //     />
+        //     {/* <button type="button" id="showFileInput" onClick={handleShowInput}></button> */}
+        //     <input type="file" name="rec_img" className={classes.imgInput} onChange={handleChange}/>
+        // </div>
+
         <div className={classes.imgInputDiv}>
-            <img 
-                src={addedImg !== null ? addedImg : "/add_recipe_icon.svg"} 
+            {addedImg === null && <h1 className={classes.title} onClick={handleShowInput}>Add Image</h1>}
+            {addedImg !== null&& <img 
+                src={addedImg !== null ? addedImg : ""} 
                 alt="recipe image" onClick={handleShowInput}
-                className={addedImg !== null? null : classes.svgAddImage}
-            />
+                // // className={addedImg !== null? null : classes.hidden}
+            />}
             {/* <button type="button" id="showFileInput" onClick={handleShowInput}></button> */}
             <input type="file" name="rec_img" className={classes.imgInput} onChange={handleChange}/>
         </div>
