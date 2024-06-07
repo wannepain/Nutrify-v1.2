@@ -12,6 +12,7 @@ import AddRecipe1 from "./pages/homescreen/add_recipes/AddRecipe1";
 import AddRecipe2 from "./pages/homescreen/add_recipes/AddRecipe2";
 import AddRecipe3 from "./pages/homescreen/add_recipes/AddRecipe3";
 import AddRecipe4 from "./pages/homescreen/add_recipes/AddRecipe4"
+import Account from "./pages/homescreen/account/Account";
 
 const router = createBrowserRouter([
   { //authentication
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
         {path: "1", element: <AddRecipe2 />},
         {path:"2", element: <AddRecipe3 />},
         {path:"3", element: <AddRecipe4 />}
-      ]}
+      ]},
+    {path: "account", element: <Account/>}
     ]
   }
 ])

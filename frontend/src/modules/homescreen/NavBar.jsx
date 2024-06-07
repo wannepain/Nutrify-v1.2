@@ -9,8 +9,10 @@ function NavBar(props) {
     useEffect(() => {
       if (location.pathname === "/home") {
         setCurrentPage("home")
-      } else {
+      } else if (location.pathname === "/home/add") {
         setCurrentPage("add")
+      } else if (location.pathname === "/home/account"){
+        setCurrentPage("account")
       }
         
     }, [location])
@@ -26,6 +28,7 @@ function NavBar(props) {
                     <li className={classes.linkContainer}>
                         <Link to="/home" className={`${currentPage === "home"? classes.currentLink: ""} ${currentPage === "home"? classes.disabled: ""}`}>Home</Link>
                         <Link to="add" className={`${currentPage === "add"? classes.currentLink: ""} ${currentPage === "add"? classes.disabled: ""}`}>Add Recipe</Link>
+                        <Link to="account" className={`${currentPage === "account"? classes.currentLink: ""} ${currentPage === "account"? classes.disabled: ""}`}>Account</Link>
                     </li>
                 </ul>
             </div>
