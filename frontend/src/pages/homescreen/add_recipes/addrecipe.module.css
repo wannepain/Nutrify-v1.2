@@ -6,6 +6,12 @@
 .title{
     color: #FFC600;
 }
+.containerDiv{
+    display: flex;
+}
+.ingredientsContainer{
+    display: flex;
+}
 .inlineLabel{
     display: flex;
     align-items: center;
