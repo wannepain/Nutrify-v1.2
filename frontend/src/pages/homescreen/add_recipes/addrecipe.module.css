@@ -42,6 +42,7 @@
     margin-top: 0.5rem;
     text-align: center;
     font-size: 1.2rem;
+    border: none;
 }
 .returnLink{
     text-decoration: none;
@@ -98,3 +99,16 @@
     font-size: 0.9rem;
     outline: none;
 }
+
+/*EVENT STYLING /////////////////////*/
+.continueLink:hover{
+    text-decoration: underline;
+    box-shadow: 0 0 5px white ;
+}
+.returnLink:hover{
+    text-decoration: underline;
+}
+.textInput:hover{
+    box-shadow: 0 0 5px white ;
+}
+

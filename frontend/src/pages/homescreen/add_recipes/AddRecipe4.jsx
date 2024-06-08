@@ -37,8 +37,9 @@ function AddRecipe4() {
                     Select courses:
                     <Question title={questionTexts.courses.title} text={questionTexts.courses.text}/>
                 </label>
-                <Select options={optionsArray} setSelected={setSelectedCourses} name="courses"/>
+                <Select options={optionsArray} setSelected={setSelectedCourses} name="courses" onlyOption={true}/>
             </div>
+            <button type="button" className={classes.continueLink}>Submit</button>
         </div>
     )
 }

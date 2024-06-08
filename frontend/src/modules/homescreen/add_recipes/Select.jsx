@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import classes from "./select.module.css";
 
-function Select(props) {
+function Select(props) {// make it possible to choose to select one option or multiple
+    const oneOption = props.onlyOption;
     const [selectedOptions, setSelectedOptions] = useState([]);
     const arrayOptions = props.options;
     
@@ -12,15 +13,19 @@ function Select(props) {
     
 
     function handleClick(event) {
-        const option = event.target.dataset.value;
-        const isSelected = checkIfIsSelected(option);
-        if (isSelected) {
-            const newArray = selectedOptions.filter((selectedOption)=>{
-                return selectedOption !== option
-            });
-            setSelectedOptions(newArray);
+        if (oneOption) {
+            setSelectedOptions(event.target.dataset.value);
         } else {
-            setSelectedOptions((prevData) => [...prevData, option]);
+            const option = event.target.dataset.value;
+            const isSelected = checkIfIsSelected(option);
+            if (isSelected) {
+                const newArray = selectedOptions.filter((selectedOption)=>{
+                    return selectedOption !== option
+                });
+                setSelectedOptions(newArray);
+            } else {
+                setSelectedOptions((prevData) => [...prevData, option]);
+            }
         }
     }
 
