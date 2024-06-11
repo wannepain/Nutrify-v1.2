@@ -233,6 +233,25 @@ app.post("/getUsername", async (req, res) => {
         res.status(500).json({ message: "Internal server error", error: error });
     }
 });
+app.post("/get/userData", async (req, res) => {
+    let response;
+    const id = await idFromUsername(req.body.username);
+    console.log(id);
+    try {
+        const result = await db.query("SELECT * FROM user_nutri_info WHERE user_id = $1", [id]);
+        console.log(result);
+        if (result.rows.length > 0) {
+            response = result.rows;
+        } else {
+            response = { message: "No data found for the given ID" };
+        }
+        res.status(200).json(response);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "An error occurred while fetching user data" });
+    }
+});
+
 
 app.post("/check", async (req, res) =>{
     const {username} = req.body
@@ -588,6 +607,23 @@ async function selectRecipes(mealCalories, nutriInfo, meal) {
 
     return selectedRecs;
 }
+
+async function idFromUsername(username) {
+    console.log(username);
+    try {
+        const result = await db.query("SELECT id FROM users WHERE username=$1", [username]);
+        if (result.rows.length > 0) {
+            const id = result.rows[0].id;
+            return id;
+        } else {
+            return null; // Return null if the user is not found
+        }
+    } catch (error) {
+        console.error(error); // Log the error for debugging
+        return false;
+    }
+}
+
 
 
 async function getDailyMenu(id) {

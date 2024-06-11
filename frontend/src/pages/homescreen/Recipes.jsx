@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import RecipeDayCard from "./../../modules/homescreen/RecipeDayCard";
 
 // Loader function to fetch weekly recipes
 export async function Loader() {

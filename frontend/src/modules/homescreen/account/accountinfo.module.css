@@ -1,0 +1,49 @@
+*{
+    color: white;
+}
+.containerDiv{
+    display: flex;
+    background-color: #101820;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    border: none;
+    flex-direction: column;
+}
+.allergiesContainer{
+    text-decoration: none;
+    list-style-type: none;
+}
+.inline{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.inlineLabel{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+.value{
+    background-color: #FFC600;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: center;
+}
+.valueContainer{
+    width: 49%;
+}
+.btn{
+    background-color: #FFC600;
+    border: none;
+    width: 100%;
+    border-radius: 0.3rem;
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    margin-top: 0.5rem;
+}

@@ -13,6 +13,9 @@
     background: rgba(16, 24, 32, 0.7);
     z-index: 3;
 }
+.questionContainer{
+    width: fit-content;
+}
 .title{
     margin-bottom: 0.2rem;
     font-size: 1.3rem;
@@ -29,6 +32,7 @@
 .questionMark{
     padding: 0.3rem;
     font-size: 1rem;
+    width: fit-content;
 }
 /*HOVER STYLING*/
 .questionMark:hover{

@@ -13,6 +13,7 @@ import AddRecipe2 from "./pages/homescreen/add_recipes/AddRecipe2";
 import AddRecipe3 from "./pages/homescreen/add_recipes/AddRecipe3";
 import AddRecipe4 from "./pages/homescreen/add_recipes/AddRecipe4"
 import Account from "./pages/homescreen/account/Account";
+import {AccountInfo, Loader as AccountInfoLoader} from "./modules/homescreen/account/AccountInfo";
 
 const router = createBrowserRouter([
   { //authentication
@@ -39,7 +40,9 @@ const router = createBrowserRouter([
         {path:"2", element: <AddRecipe3 />},
         {path:"3", element: <AddRecipe4 />}
       ]},
-    {path: "account", element: <Account/>}
+    {path: "account", element: <Account/>, children:[
+      {index: true, element: <AccountInfo/>, loader: AccountInfoLoader}
+    ]}
     ]
   }
 ])
