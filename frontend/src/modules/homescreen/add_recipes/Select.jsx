@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import classes from "./select.module.css";
 
-function Select(props) {// make it possible to choose to select one option or multiple
+function Select(props) { // options = accepts array of options, onlyOption = boolean to set if only one option can be submited
     const oneOption = props.onlyOption;
     const [selectedOptions, setSelectedOptions] = useState([]);
     const arrayOptions = props.options;

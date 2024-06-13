@@ -7,7 +7,7 @@ import SignUp2 from "./pages/authentication/SignUp2";
 import Welcome,{isTokenValid}from "./pages/authentication/Welcome";
 import AddRecipes from "./pages/homescreen/AddRecipe";
 import Homescreen from './pages/homescreen/Homescreen';
-import Recipes, {Loader} from "./pages/homescreen/Recipes";
+import Recipes, {Loader} from "./pages/homescreen/Recipes/Recipes";
 import AddRecipe1 from "./pages/homescreen/add_recipes/AddRecipe1";
 import AddRecipe2 from "./pages/homescreen/add_recipes/AddRecipe2";
 import AddRecipe3 from "./pages/homescreen/add_recipes/AddRecipe3";

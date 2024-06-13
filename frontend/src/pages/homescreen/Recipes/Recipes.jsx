@@ -2,7 +2,6 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import RecipeDayCard from "./../../modules/homescreen/RecipeDayCard";
 
 // Loader function to fetch weekly recipes
 export async function Loader() {
@@ -40,35 +39,15 @@ export async function Loader() {
 // Main component to display recipes
 function Recipes() {
   const data = useLoaderData();
-  const recipes = data? data.weeklyRecipes : false;
-  useEffect(() => {
+  const weeklyRecipes = 
+  useEffect(()=>{
     console.log(data);
-  }, [data])
-  
-  let jsxToRender;
-  
-  if (!data) {
-    return <h1>Loading...</h1>; // Loading state
-  }
-  if (recipes === undefined || !recipes) {
-    jsxToRender=(
-      <h1>RECIPES ARE {`${recipes}`}</h1>
-    )
-  } else{
-    jsxToRender = (
-      <>
-        {recipes.map((recipe, index) => (
-          <RecipeDayCard key={index} recipe={recipe} />
-        ))}
-      </>
-      
-    )
-  }
+  }, [])
 
   return (
     <div>
       <h1>Hello from Recipes</h1>
-      {jsxToRender}
+      {/* {jsxToRender} */}
     </div>
   );
 }

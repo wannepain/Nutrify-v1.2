@@ -1,6 +1,4 @@
-*{
-    color: white;
-}
+
 .containerDiv{
     display: flex;
     background-color: #101820;
@@ -34,6 +32,7 @@
     font-size: 1rem;
     font-weight: normal;
     text-align: center;
+    cursor: pointer;
 }
 .valueContainer{
     width: 49%;
@@ -46,4 +45,10 @@
     font-size: 1.2rem;
     padding: 0.2rem;
     margin-top: 0.5rem;
+    cursor: pointer;
+}
+.overlayDiv{
+    position: absolute;
+    z-index: 2;
+    top: 0;
 }
