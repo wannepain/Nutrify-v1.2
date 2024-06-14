@@ -3,6 +3,37 @@
     flex-direction: column;
     margin-top: 0.5rem;
 }
+.main{
+    display: flex; 
+    position: relative;
+    flex-direction: column;
+}
+.sideBySideDiv{
+    display: flex;
+}
+.sign,
+.infoContainer{
+    background-color: #101820;
+    color: #FDFDFF;
+    border: none;
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+}
+.infoContainer{
+    width: 60%;
+}
+.sign{
+    flex-grow: 2;
+}
+.heading{
+    font-size: 1.4rem;
+    color: #FFC600;
+}
+.text{
+    margin-left: 0.2rem;
+}
+
 .btn{
     background-color: #101820;
     color: #FDFDFF;
