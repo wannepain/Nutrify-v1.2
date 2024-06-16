@@ -10,23 +10,7 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #FFC600;
-}
-
-body {
-  /* Set the initial background */
-  background-image: radial-gradient(circle at center center, #101820, #FFC600), repeating-radial-gradient(circle at center center, #101820, #101820, 9px, transparent 18px, transparent 9px);
-  background-blend-mode: multiply;
-
-
-  /* Animation setup */
-  animation: zoomBackground 7s linear 0s infinite alternate;
-}
-
-/* Keyframes for the zooming animation */
-@keyframes zoomBackground {
-  from {background-color: #FFC600;}
-  to{background-color: red;}
+  background-color: black;
 }
 
 #root {

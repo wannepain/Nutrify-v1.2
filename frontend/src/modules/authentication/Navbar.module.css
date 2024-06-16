@@ -1,0 +1,60 @@
+.motherDiv {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure it is above the blurred background */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.48);
+    padding: 1rem; /* Adjust padding as needed */
+}
+
+.marginDiv {
+    margin-bottom: 4rem;
+}
+.authContainer{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.navBtns, .navBtnl{
+    padding:  0.2rem 0.9rem;
+    border-radius: 100px;
+    font-size: 1.2rem;
+    border: none;
+    text-decoration: none;
+}
+.navBtnl{
+    color: #81838a;
+}
+.optionsContainer a{
+    text-decoration: none;
+    color: #81838a;
+    font-size: 1.2rem;
+    margin: 0 1rem;
+}
+.navBtns{
+    color: white;
+    background-color: #FFC600;
+    box-shadow: rgba(54, 92, 251, 0.08) 0px 1px 2px 0px, rgba(255, 255, 255, 0.4) 0px 0px 6px 0px inset;
+}
+.logo{
+    font-size: 1.2rem;
+    color: #FFC600;
+    text-decoration: none;
+}
+
+
+/*hover styling */
+.navBtnl:hover, .optionsContainer a:hover{
+    color: white;
+}
+.navBtns:hover{
+    background-color: black;
+}
+
+@media (max-width: 768px) {
+  
+}
