@@ -1,0 +1,38 @@
+.motherDiv{
+    display: flex;
+    /* align-items: flex-end; */
+    padding: 0.5rem;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.li a{
+    text-decoration: none;
+    color: #81838a;
+}
+.ul{
+    display: flex;
+    list-style-type: none;
+    flex-direction: column;
+}
+.divTitle{
+    color: rgba(255, 255, 255, 0.72);
+}
+.div{
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+}
+.inline{
+    display: flex;
+}
+.logoContainer{
+    display: flex;
+    align-items: center;
+}
+.slogan{
+    color: rgba(255, 255, 255, 0.72);
+}
+.logo{
+    filter: invert(87%) sepia(47%) saturate(0%) hue-rotate(137deg) brightness(114%) contrast(101%);
+    width: 5rem;
+}

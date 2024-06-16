@@ -2,6 +2,7 @@ import axios from "axios";
 import classes from "./welcome.module.css";
 import Navbar from "../../modules/authentication/NavBar";
 import {Link, useLoaderData, useNavigate} from "react-router-dom";
+import Footer from "../../modules/authentication/Footer";
 
 function Welcome(props) {
     const isTokenValid = useLoaderData();
@@ -21,7 +22,7 @@ function Welcome(props) {
                     </div>
                 </div>
                 <div className={classes.imageContainer}>
-
+                    {/* Insert promotional video */}
                 </div>
             </div>
             <div className={classes.advantagesContainer}>
@@ -41,6 +42,7 @@ function Welcome(props) {
                     <p className={classes.advText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }
