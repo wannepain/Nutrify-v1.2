@@ -55,9 +55,9 @@ function SignUp1(props) {
 
     return (
         <div className={classes.motherDiv}>
-            <Link className={classes.back} to="/"><h2><img src={caretLeft} alt="Back" className={classes.backIcon} /> Go back</h2></Link>
+            <Link className={classes.logo} to="/"><h2>Nutrify</h2></Link>
+            <h1 className={classes.title}>Log In or Sign up </h1>
             <form className={classes.form} onSubmit={handleContinue}>
-                <h1 className={classes.h1}>Sign up</h1>
                 <div className={classes.inputContainer}>
                     <div className={classes.labelContainer}>
                         <label htmlFor="username" className={classes.h3}>Your username:</label>
@@ -115,6 +115,8 @@ function SignUp1(props) {
                 {error && <p className={classes.error}>{error}</p>}
                 <button type="submit" className={classes.formBtn}>Continue</button>
             </form>
+            <p className={classes.p}>By proceeding you agree to the <Link>terms of use</Link> and <Link>privacy policy</Link></p>
+            <p className={classes.p}>No Nutrify account? <Link to={'/signup'} className={classes.inlineLink}>Sign up</Link></p>
         </div>
     );
 }

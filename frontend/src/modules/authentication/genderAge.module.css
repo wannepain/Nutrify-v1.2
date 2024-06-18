@@ -28,6 +28,7 @@
     unicode-bidi: isolate;
     font-size: 1rem;
     font-weight: 500;
+    color: white;
 }
 /* Chrome, Safari, Edge, Opera */
 .input::-webkit-outer-spin-button,

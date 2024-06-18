@@ -1,10 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import AuthContainer from "./pages/authentication/AuthContainer";
+import AuthContainer, {Loader as AuthLoader} from "./pages/authentication/AuthContainer";
 import LogIn from "./pages/authentication/LogIn";
 import SignUp from "./pages/authentication/SignUp";
 import SignUp1 from "./pages/authentication/SignUp1";
 import SignUp2 from "./pages/authentication/SignUp2";
-import Welcome,{isTokenValid}from "./pages/authentication/Welcome";
+import Welcome from "./pages/authentication/Welcome";
 import AddRecipes from "./pages/homescreen/AddRecipe";
 import Homescreen from './pages/homescreen/Homescreen';
 import Recipes, {Loader} from "./pages/homescreen/Recipes/Recipes";
@@ -16,12 +16,13 @@ import Account from "./pages/homescreen/account/Account";
 import {AccountInfo, Loader as AccountInfoLoader} from "./modules/homescreen/account/AccountInfo";
 
 const router = createBrowserRouter([
-  { //authentication
+  { //authentication 
     path: "/",
     element: <AuthContainer />,
+    loader: AuthLoader,
     //errorElement:  ,
     children:[
-      {index: true, element: <Welcome />, loader: isTokenValid},
+      {index: true, element: <Welcome />},
       {path: "signup", element: <SignUp />, children: [
         {index: true, element: <SignUp1 />}, 
         {path: "nutrition", element: <SignUp2 />}

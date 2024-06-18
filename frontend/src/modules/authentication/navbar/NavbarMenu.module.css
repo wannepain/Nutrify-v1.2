@@ -1,0 +1,23 @@
+.hiden{
+    display: none;
+}
+.mainBtn{
+    background-color: transparent;
+    border: none;
+}
+.mainBtn img{
+    height: 100%;
+}
+.motherDiv{
+    display: flex;
+}
+.dropdown{
+    position: fixed;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    top: 3.75rem;
+    width: 100%;
+    backdrop-filter: blur(10px);
+    background-color: rgba(0, 0, 0, 0.48);
+}

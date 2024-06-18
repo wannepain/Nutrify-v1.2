@@ -1,12 +1,18 @@
+.mobile{
+    display: none;
+  }
+.pc{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .motherDiv {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1; /* Ensure it is above the blurred background */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     backdrop-filter: blur(10px);
     background-color: rgba(0, 0, 0, 0.48);
     padding: 1rem; /* Adjust padding as needed */
@@ -54,7 +60,24 @@
 .navBtns:hover{
     background-color: black;
 }
-
+/*styling for mobile devices*/
 @media (max-width: 768px) {
+  .pc{
+    display: none;
+  }
+  .mobile{
+    display: flex;
+    justify-content: space-between;
+  }
+  .phoneNavTitle{
+    color: white;
+  }
+  .menu{
+    background-color: transparent;
+    border: none;
+  }
+  .menu img{
+    height: 100%;
+  }
   
 }

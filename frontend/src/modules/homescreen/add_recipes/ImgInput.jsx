@@ -1,8 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import classes from "./imginput.module.css";
 
 function ImgInput(props) {
     const [addedImg, setAddedImg] = useState(null);
+
+    useEffect(() => {
+        const savedImg = JSON.parse(localStorage.getItem("recipe_img"));
+        const imgBase64 = savedImg.base64Data;
+        if (imgBase64) {
+            setAddedImg(imgBase64)
+        }
+    }, [])
+    
 
     function handleShowInput(event) {
         event.preventDefault();
@@ -14,38 +23,42 @@ function ImgInput(props) {
         const reader = new FileReader();
 
         reader.onload = function(event) {
-            const imageDataUrl = event.target.result; // Get the base64 encoded data URL
-            props.savingFunction({file:file, imageDataUrl: imageDataUrl});
-            setAddedImg(imageDataUrl); // Set the selected image as base64 encoded data
+            const binaryData = event.target.result; // Get the binary data
+            const base64Data = btoa(
+                new Uint8Array(binaryData).reduce((data, byte) => data + String.fromCharCode(byte), '')
+            );
+            props.savingFunction({ file: file, binaryData: binaryData, base64Data: base64Data });
+            setAddedImg(base64Data); // Set the selected image as base64 encoded data URL for display
         };
 
         if (file) {
-            reader.readAsDataURL(file); // Read the selected file as a data URL
+            reader.readAsArrayBuffer(file); // Read the selected file as binary data
         }
     }
 
-    return(
-        // <div className={classes.imgInputDiv}>
-        //     <img 
-        //         src={addedImg !== null ? addedImg : "/add_recipe_icon.svg"} 
-        //         alt="recipe image" onClick={handleShowInput}
-        //         className={addedImg !== null? null : classes.svgAddImage}
-        //     />
-        //     {/* <button type="button" id="showFileInput" onClick={handleShowInput}></button> */}
-        //     <input type="file" name="rec_img" className={classes.imgInput} onChange={handleChange}/>
-        // </div>
-
+    return (
         <div className={classes.imgInputDiv}>
-            {addedImg === null && <h1 className={classes.title} onClick={handleShowInput}>Add Image</h1>}
-            {addedImg !== null&& <img 
-                src={addedImg !== null ? addedImg : ""} 
-                alt="recipe image" onClick={handleShowInput}
-                // // className={addedImg !== null? null : classes.hidden}
-            />}
-            {/* <button type="button" id="showFileInput" onClick={handleShowInput}></button> */}
-            <input type="file" name="rec_img" className={classes.imgInput} onChange={handleChange}/>
+            {addedImg === null && (
+                <h1 className={classes.title} onClick={handleShowInput}>
+                    Add Image
+                </h1>
+            )}
+            {addedImg !== null && (
+                <img
+                    src={`data:image/jpeg;base64,${addedImg}`}
+                    alt="recipe image"
+                    onClick={handleShowInput}
+                />
+            )}
+            <input
+                type="file"
+                name="rec_img"
+                className={classes.imgInput}
+                onChange={handleChange}
+                style={{ display: 'none' }} // Hide the file input element
+            />
         </div>
-    )
+    );
 }
 
 export default ImgInput;

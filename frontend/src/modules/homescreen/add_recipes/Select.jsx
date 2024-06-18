@@ -9,6 +9,13 @@ function Select(props) { // options = accepts array of options, onlyOption = boo
     useEffect(() => {
       props.setSelected(selectedOptions)
     }, [selectedOptions])
+
+    useEffect(()=>{
+        console.log(props.selected);
+        if (props.selected) {
+            setSelectedOptions(props.selected);
+        }
+    }, [props.selected])
     
     
 

@@ -64,8 +64,8 @@ function LogIn(props) {
   }
   return (
     <div className={classes.motherDiv}>
-      <Link className={classes.back} to="/"><h2><img src="./../../public/caret-left.svg" alt="Back" className={classes.backIcon}/> Go back</h2></Link>
-      <h1>Log In</h1>
+      <Link className={classes.logo} to="/"><h2>Nutrify </h2></Link>
+      <h1 className={classes.title}>Log In or Sign up </h1>
       <form className={classes.form}>
         <div className={classes.inputContainer}>
           <div className={classes.labelContainer}>
@@ -105,6 +105,8 @@ function LogIn(props) {
         {!error ? null : <p className={classes.error}>{error}</p>}
         <button className={classes.formBtn} onClick={handleLogin}>Login</button>
       </form>
+      <p className={classes.p}>By proceeding you agree to the <Link>terms of use</Link> and <Link>privacy policy</Link></p>
+      <p className={classes.p}>No Nutrify account? <Link to={'/signup'} className={classes.inlineLink}>Sign up</Link></p>
     </div>
   );
 }

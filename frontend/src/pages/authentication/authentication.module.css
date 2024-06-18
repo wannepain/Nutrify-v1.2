@@ -4,13 +4,18 @@
     cursor: pointer;
     transition: all ease 0.3s;
     text-decoration: none;
-    color: #101820;
+    color: rgb(154 158 167);
+    width: 100%;
 }
 .motherDiv{
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .backIcon{
     width: 1rem;
+    filter: invert(72%) sepia(13%) saturate(189%) hue-rotate(184deg) brightness(87%) contrast(83%);
 }
 .back:hover{
     text-decoration: underline;
@@ -19,6 +24,22 @@
     font-size: 2rem;
     width: 100%;
     user-select: none;
+}
+.p{
+    margin-top: 3rem;
+    color: rgb(146 150 154);
+}
+.inlineLink{
+    text-decoration: none;
+    color: #FFC600;
+}
+.error{
+    color: white;
+}
+.h3{
+    color: white;
+    font-weight: 300;
+    font-size: 1rem;
 }
 .input:focus{
     outline: none;
@@ -62,6 +83,7 @@
     display: flex;
     flex-direction: column;
     transition: all ease 0.3s;
+    
 }
 .input{
     margin: 0.5rem 0;
@@ -71,6 +93,8 @@
     outline: none;
     border: none;
     transition: all ease 0.3s;
+    background-color: rgb(34 35 39);
+    color: white;
 }
 .labelContainer{
     display: flex;
@@ -93,12 +117,22 @@
 form{
     align-items: center;
 }
+.logo{
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+}
 .title{
-    text-decoration: underline;
+    font-size: 1.2rem;
+    color: rgb(214 225 255);
+    text-decoration: none;
+    font-weight: 300;
 }
 @media  screen and (min-width: 720px) and (orientation: landscape){ 
     .motherDiv{
-        width: 30%;
+        width: 70%;
     }
 }
 

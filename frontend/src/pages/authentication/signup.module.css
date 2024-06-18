@@ -3,6 +3,9 @@
 }
 .div{
     width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
 }
 .secondSignUpContainer{
     margin-bottom: 0.5rem;
@@ -11,15 +14,15 @@
     width: 100%;
     border-radius: 0.5rem;
     padding: 0;
-    border: none;
-    background-color: #101820;
+    border: none; 
+    background-color: #FFC600;
     color: #FDFDFF;
     font-size: 1.5rem;
     cursor: pointer;
 }
 @media  screen and (min-width: 720px) and (orientation: landscape){ 
     .div{
-        width: 30%;
+        width: 50%;
     }
 }
 /*hover styling*/

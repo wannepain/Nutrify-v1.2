@@ -5,8 +5,6 @@ import {Link, useLoaderData, useNavigate} from "react-router-dom";
 import Footer from "../../modules/authentication/Footer";
 
 function Welcome(props) {
-    const isTokenValid = useLoaderData();
-    const navigate = useNavigate;
     return (
         <div className={classes.motherDiv}>
             <Navbar />
@@ -48,29 +46,3 @@ function Welcome(props) {
 }
 
 export default Welcome;
-
-export async function isTokenValid() {
-    const token = localStorage.getItem("jwtToken");
-
-    if (!token) {
-        console.error("No token found");
-        return false;
-    }
-
-    try {
-        const result = await axios.post("http://localhost:3000/check/token", null, {
-            headers: {
-                "authorization": token
-            }
-        });
-
-        if (result.status === 200) {
-            return true;
-        } else {
-            return false;
-        }
-    } catch (error) {
-        console.error("Error validating token:", error);
-        return false;
-    }
-}

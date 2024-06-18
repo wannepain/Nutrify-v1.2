@@ -86,5 +86,12 @@
 .advText, .mainAdvText{
   color: rgba(255, 255, 255, 0.72);
 }
-
-
+/*styling for mobile devices */
+@media (max-width: 768px) {
+  .mainContainer{
+    padding: 1rem;
+  }
+  .advImg{
+    width: 1rem;
+  }
+}

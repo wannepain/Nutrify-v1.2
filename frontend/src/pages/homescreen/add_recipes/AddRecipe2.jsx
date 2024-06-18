@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import classes from "./addrecipe.module.css";
 import Allergies from "../../../modules/authentication/Allergies";
 import Question from "../../../modules/homescreen/add_recipes/Question";
@@ -7,7 +7,8 @@ import { useState, useEffect } from "react";
 import OutsideAlerter from "../../../utility_components/OutsideAlerter";
 
 function AddRecipe2() {
-    const [selectedOption, setSelectedOptions] = useState([])
+    const [selectedOption, setSelectedOptions] = useState(null)
+    const [allergies, setAllergies] =  useState(null);
     const [calories, setCalories] = useState("0");
     const [isOut, setIsOut] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
@@ -20,6 +21,42 @@ function AddRecipe2() {
         }
       
     }, [isOut])
+
+    useEffect(()=>{ // sets allergies 
+        if (allergies !== null) {
+            localStorage.setItem("allergiesRecipe", JSON.stringify(allergies));
+        }
+    },[allergies]);
+
+    useEffect(()=>{ //sets diet
+        if (selectedOption !== null) {
+            localStorage.setItem("dietRecipe", JSON.stringify(selectedOption));
+        }
+    }, [selectedOption]);
+
+    useEffect(()=>{ //sets calories 
+        if (calories !== "0") {
+           localStorage.setItem("caloriesRecipe", JSON.stringify(calories));
+        }
+    }, [calories])
+
+
+    //set values on load, if they were saved
+
+    useEffect(() => {
+        const savedAllergies = JSON.parse(localStorage.getItem("allergiesRecipe"));
+        if (savedAllergies !== null) {
+            setAllergies(savedAllergies);
+        }
+        const savedDiet = JSON.parse(localStorage.getItem("dietRecipe"));
+        if (savedDiet !== null) {
+            setSelectedOptions(savedDiet);
+        }
+        const savedCalories = JSON.parse(localStorage.getItem("caloriesRecipe"));
+        if (savedCalories !== null) {
+            setCalories(savedCalories);
+        }
+    }, []);
     
 
     function handleChange(event) {
@@ -38,7 +75,7 @@ function AddRecipe2() {
                 Go back
             </Link>
             <h1 className={classes.title}>Add Recipe </h1>
-            <Allergies />
+            <Allergies obj={setAllergies}/>
             <div className={classes.inputContainer}>
                 <label htmlFor="calories" className={classes.inlineLabel}>Total Calories: 
                     <Question 
@@ -63,7 +100,7 @@ function AddRecipe2() {
                             onClick={handleClick}
                         />
                     </div>
-                </OutsideAlerter>
+                </OutsideAlerter> 
             </div>
             <div>
                 <label className={classes.inlineLabel}>Select all fiting diets: 
@@ -72,7 +109,7 @@ function AddRecipe2() {
                     text="Omnivorous is a diet, where you can eat anything. Vegetarian is a diet where you cannot eat meat and vegetarian is a diet where you cannot eat any animal products"
                 />
                 </label>
-                <Select options={optionsArray} setSelected={setSelectedOptions}/>
+                <Select options={optionsArray} setSelected={setSelectedOptions} selected={selectedOption}/>
             </div>
             <Link to="/home/add/2" className={classes.continueLink}>Continue</Link>
         </div>

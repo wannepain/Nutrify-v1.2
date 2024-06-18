@@ -42,6 +42,6 @@ function AddRecipe4() {
             <button type="button" className={classes.continueLink}>Submit</button>
         </div>
     )
-}
+} 
 
 export default AddRecipe4;

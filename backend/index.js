@@ -267,6 +267,23 @@ app.post("/check", async (req, res) =>{
     }
 });
 
+app.post("/delete_user", async (req, res) => {
+    const username = req.body.username;
+    if (!username) {
+        return res.status(400).json({ error: "Username is required" });
+    }
+
+    try {
+        const result = await db.query("DELETE FROM users WHERE username = $1", [username]);
+        if (result.rowCount === 0) {
+            return res.status(404).json({ error: "User not found" });
+        }
+        res.status(200).json({ message: "User deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting user:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+});
 
 
 // Authenticate route 
@@ -293,7 +310,7 @@ app.post("/check/token", (req, res)=>{
     if(!result){
         res.json({message:"token invalid"}).status(400);
     } else{
-        res.json({message:"token valid"}).status(200);
+        res.json({message:"token valid", id: result.id}).status(200);
     }
 }
 )

@@ -36,3 +36,7 @@
     filter: invert(87%) sepia(47%) saturate(0%) hue-rotate(137deg) brightness(114%) contrast(101%);
     width: 5rem;
 }
+/*styling for mobile devices */
+@media (max-width: 768px) {
+  
+}
