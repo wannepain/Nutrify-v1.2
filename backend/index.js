@@ -22,19 +22,29 @@ const db = new pg.Client({
     port: 5432
 });
 
-env.config();
+// Use cookie parser
 app.use(cookieParser());
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true }));
+
+// Increase the limit for JSON body parser to 50MB
+app.use(bodyParser.json({ limit: '50mb' }));
+
+// Increase the limit for URL-encoded body parser to 50MB
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+
+// Configure CORS
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true // Allow sending cookies from the client
-  }));
+}));
+
+// Configure session
 app.use(session({
     secret: "QWERTY",
     resave: false,
     saveUninitialized: true,
 }));
+
+// Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -151,7 +161,7 @@ app.post("/add/recipe", async (req, res) => {
     //     "course": "first" or "main" or "desert"
     //     "description": recipe description, the shorter, the better
     //   }
-    const { username, rec_name, rec_img, ingredients, procedure, allergies, diet, calories, proteins, carbs, fats, meal, course, description } = JSON.parse(req.body);
+    const { username, rec_name, rec_img, ingredients, procedure, allergies, diet, calories, proteins, carbs, fats, meal, course, description } = req.body;
     try {
         const userExists = await db.query("SELECT id FROM users WHERE username = $1", [username]);
         if (userExists.rows.length === 0) {
@@ -159,16 +169,17 @@ app.post("/add/recipe", async (req, res) => {
             res.status(409).json({ message: "user not found" }); // Assuming you want to return "user not found" for conflict
         } else {
             try {
-                const result = await db.query("INSERT INTO recipes (user_id, rec_name, rec_img, ingredients, procedure, allergies, diet, calories, proteins, carbs, fats, meal, course, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)", [
-                    parseInt(userExists.rows[0].id), rec_name, compressBase64(rec_img), ingredients, procedure, allergies, diet, parseInt(calories), proteins === ""? 0 : parseInt(proteins), carbs === ""? 0 : parseInt(carbs), fats === ""? 0 : parseInt(fats), meal, course, description
+                const result = await db.query("INSERT INTO recipes (user_id, rec_name, rec_img, ingredients, procedure, allergies, diet, calories, meal, course, description) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)", [
+                    parseInt(userExists.rows[0].id), rec_name, rec_img, ingredients, procedure, allergies, diet, parseInt(calories), meal, course, description
                 ]);
                 res.status(200).json({ message: "recipe added successfully" });
             } catch (error) {
-                if (error.constraint === 'unique_recipe'){
+                if (error.constraint === 'unique_recipe' || error.constraint === 'recipes_rec_name_key'){
                     res.status(409).json({ error: "Recipe already exists" });
                     console.log("Recipe already exists")
                 } else{
                     console.log(error);
+                    console.log("error caught");
                     res.status(500).json({ message: "error occurred while querying" });
                 }
             }

@@ -1,34 +1,29 @@
 import { useState, useEffect } from "react";
 import classes from "./select.module.css";
 
-function Select(props) { // options = accepts array of options, onlyOption = boolean to set if only one option can be submited
+function Select(props) {
     const oneOption = props.onlyOption;
-    const [selectedOptions, setSelectedOptions] = useState([]);
+    const [selectedOptions, setSelectedOptions] = useState(props.selected || []);
     const arrayOptions = props.options;
-    
-    useEffect(() => {
-      props.setSelected(selectedOptions)
-    }, [selectedOptions])
 
-    useEffect(()=>{
-        console.log(props.selected);
-        if (props.selected) {
+    useEffect(() => {
+        props.setSelected(selectedOptions);
+    }, [selectedOptions, props.setSelected]);
+
+    useEffect(() => {
+        if (props.selected !== null && props.selected !== undefined) {
             setSelectedOptions(props.selected);
         }
-    }, [props.selected])
-    
-    
+    }, [props.selected]);
 
     function handleClick(event) {
+        const option = event.target.dataset.value;
         if (oneOption) {
-            setSelectedOptions(event.target.dataset.value);
+            setSelectedOptions([option]);
         } else {
-            const option = event.target.dataset.value;
             const isSelected = checkIfIsSelected(option);
             if (isSelected) {
-                const newArray = selectedOptions.filter((selectedOption)=>{
-                    return selectedOption !== option
-                });
+                const newArray = selectedOptions.filter(selectedOption => selectedOption !== option);
                 setSelectedOptions(newArray);
             } else {
                 setSelectedOptions((prevData) => [...prevData, option]);
@@ -44,8 +39,7 @@ function Select(props) { // options = accepts array of options, onlyOption = boo
     return (
         <div className={classes.container}>
             {arrayOptions.map((currentValue, index) => {
-                const isSelected = checkIfIsSelected(currentValue);
-
+                const isSelected = checkIfIsSelected(currentValue.toLowerCase());
                 return (
                     <button
                         type="button"

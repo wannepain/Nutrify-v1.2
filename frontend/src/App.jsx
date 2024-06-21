@@ -5,7 +5,7 @@ import SignUp from "./pages/authentication/SignUp";
 import SignUp1 from "./pages/authentication/SignUp1";
 import SignUp2 from "./pages/authentication/SignUp2";
 import Welcome from "./pages/authentication/Welcome";
-import AddRecipes from "./pages/homescreen/AddRecipe";
+import AddRecipes, {submitRecipe} from "./pages/homescreen/AddRecipe";
 import Homescreen from './pages/homescreen/Homescreen';
 import Recipes, {Loader} from "./pages/homescreen/Recipes/Recipes";
 import AddRecipe1 from "./pages/homescreen/add_recipes/AddRecipe1";
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         {index: true, element: <AddRecipe1/>},
         {path: "1", element: <AddRecipe2 />},
         {path:"2", element: <AddRecipe3 />},
-        {path:"3", element: <AddRecipe4 />}
+        {path:"3", element: <AddRecipe4 submit={submitRecipe}/>}
       ]},
     {path: "account", element: <Account/>, children:[
       {index: true, element: <AccountInfo/>, loader: AccountInfoLoader}

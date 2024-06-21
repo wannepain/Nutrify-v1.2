@@ -99,7 +99,23 @@
     font-size: 0.9rem;
     outline: none;
 }
-
+.ingredientBtn{
+    border: none;
+    border-radius: 0.3rem;
+    background: #FFC600;
+    padding: 0.2rem;
+    font-size: 0.9rem;
+    margin: 0.3rem 0;
+    margin-right: 0.3rem;
+}
+.error{
+    color: #FFC600;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    left: 0;
+    bottom: 2rem;
+}
 /*EVENT STYLING /////////////////////*/
 .continueLink:hover{
     text-decoration: underline;

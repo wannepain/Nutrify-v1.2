@@ -9,7 +9,7 @@ function AuthContainer(props) {
 
     useEffect(() => {
       if (isValid) {
-        localStorage.setItem("username_password", {username: username});
+        localStorage.setItem("username_password", JSON.stringify({username: username}));
         navigate("/home");
       }
     }, [isValid])
@@ -42,7 +42,7 @@ async function getUsername(token) {
             }
         }
     } catch (error) {
-        throw error;
+        return error;
     }
 
     return { username: username, isValid: isValid};

@@ -1,4 +1,4 @@
-import { Link, json } from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import classes from "./addrecipe.module.css";
 import Allergies from "../../../modules/authentication/Allergies";
 import Question from "../../../modules/homescreen/add_recipes/Question";
@@ -12,6 +12,10 @@ function AddRecipe2() {
     const [calories, setCalories] = useState("0");
     const [isOut, setIsOut] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
+    const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
+
     const optionsArray = [
         "Omnivorous", "Vegetarian", "Vegan"
     ]
@@ -68,6 +72,22 @@ function AddRecipe2() {
     function handleClick(event) {
         setIsSelected(!isSelected);
     }
+
+    function handleContinue(event) {
+        event.preventDefault();
+        console.log(selectedOption);
+
+        if (calories === "0" || selectedOption.length === 0 ) {
+            if (calories === "0") {
+                setError("Calories must be filled");
+            } else {
+                setError("At least one diet should be selected");
+            }
+        } else {
+            navigate("/home/add/2");
+        }
+    }
+
     return(
         <div className={classes.motherDiv}>
             <Link to=".."relative="route" className={classes.returnLink}>
@@ -111,7 +131,8 @@ function AddRecipe2() {
                 </label>
                 <Select options={optionsArray} setSelected={setSelectedOptions} selected={selectedOption}/>
             </div>
-            <Link to="/home/add/2" className={classes.continueLink}>Continue</Link>
+            {error !== "" && <p className={classes.error}>{error}</p>}
+            <a className={classes.continueLink} onClick={handleContinue}>Continue</a>
         </div>
         
     )
