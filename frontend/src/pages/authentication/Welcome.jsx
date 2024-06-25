@@ -3,12 +3,15 @@ import classes from "./welcome.module.css";
 import Navbar from "../../modules/authentication/NavBar";
 import {Link, useLoaderData, useNavigate} from "react-router-dom";
 import Footer from "../../modules/authentication/Footer";
+import backgroundImg from "./../../../src/assets/nutrify.png";
 
 function Welcome(props) {
     return (
         <div className={classes.motherDiv}>
             <Navbar />
-            <div className={classes.mainContainer}>
+            <div className={classes.mainContainer} style={
+                {backgroundImage: `url(${backgroundImg})`}
+            }>
                 <div className={classes.textContainer}>
                     <h1 className={classes.title}>Lorem ipsum dolor sit amet</h1>
                     <div className={classes.inlineTxtBtns}>

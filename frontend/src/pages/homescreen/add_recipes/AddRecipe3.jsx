@@ -80,7 +80,7 @@ function AddRecipe3() {
 
     return (
         <div className={classes.motherDiv}>
-            <Link to="/home/add/2" className={classes.returnLink}>Go back</Link>
+            <Link to="/home/add/1" className={classes.returnLink}>Go back</Link>
             <h1 className={classes.title}>Add Recipe</h1>
             <div>
                 <label htmlFor="ingredientInput" className={classes.inlineLabel}>

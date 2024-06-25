@@ -39,7 +39,8 @@ export async function submitRecipe() {
             description: recDescription
     })
          if (result.status ===200) {
-            clearLocalStorage();
+            localStorage.clear(); // change this code so that the username/password remain
+            localStorage.setItem("username_password", JSON.stringify({username: username, password:  null} ));
             return 200;
          } else {
             return result.response.status;
@@ -47,18 +48,6 @@ export async function submitRecipe() {
     } catch (error) {
         console.log(error);
         return error.response.status;
-    }
-
-    function clearLocalStorage() {
-        localStorage.removeItem("name_description");
-        localStorage.removeItem("recipe_img");
-        localStorage.removeItem("allergies");
-        localStorage.removeItem("caloriesRecipe");
-        localStorage.removeItem("dietRecipe");
-        localStorage.removeItem("ingredientsRecipe");
-        localStorage.removeItem("mealRecipe");
-        localStorage.removeItem("procedure");
-        localStorage.removeItem("courses")
     }
 }
 

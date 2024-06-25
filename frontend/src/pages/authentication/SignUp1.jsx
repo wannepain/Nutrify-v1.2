@@ -116,7 +116,7 @@ function SignUp1(props) {
                 <button type="submit" className={classes.formBtn}>Continue</button>
             </form>
             <p className={classes.p}>By proceeding you agree to the <Link>terms of use</Link> and <Link>privacy policy</Link></p>
-            <p className={classes.p}>No Nutrify account? <Link to={'/signup'} className={classes.inlineLink}>Sign up</Link></p>
+            <p className={classes.p}>Already have a Nutrify Account? <Link to={'/login'} className={classes.inlineLink}>Log in</Link></p>
         </div>
     );
 }

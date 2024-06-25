@@ -15,9 +15,9 @@
     display: flex;
     flex-direction: column;
     padding: 3rem 10rem;
-
     /*animation*/
     position: relative;
+    background-size: 12px;
 }
 .title{
     font-size: 3rem;
