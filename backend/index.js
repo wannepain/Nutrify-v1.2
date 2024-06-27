@@ -9,7 +9,7 @@ import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import cookieParser from "cookie-parser";
-import {compressBase64, decompressBase64} from "./utility/Base64SizeRed.js";
+import { getWeeklyRecipes , updateWeeklyRecipes} from "./weekly_recipes.js";
 
 const app = Express();
 const port = 3000;
@@ -201,10 +201,10 @@ app.post("/weeklyRecipes", async (req, res) => {
             // const id = 3;
             const d = new Date();
             // if (d.getDay() === 0) { // if today is Sunday
+                updateWeeklyRecipes(id)
                 const queryParArray = [await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id),  await getDailyMenu(id), await getDailyMenu(id), await getDailyMenu(id), id]
                 const queryText =  "UPDATE weekly_recipes SET sunday=$1, monday=$2, tuesday=$3, wednesday=$4, thursday=$5, friday=$6, saturday=$7 WHERE user_id = $8 RETURNING *"
                 const result = await db.query(queryText, queryParArray); 
-                console.log(result.rows)
                 res.status(200).json({ weekRecipes: result.rows });
             // } else {
             //     console.log("different day");
